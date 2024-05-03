@@ -45,11 +45,16 @@ class LSupervisorProvider extends ServiceProvider
         // });
 
         // Views
+        $this->registerResources();
         $this->publishes([
             __DIR__ . '/../resources/views' => base_path('resources/views'),
             __DIR__ . '/../Http/Middeleware' => base_path('app/Http/Middeleware'),
             __DIR__ . '/../Models' => base_path('app/Models'),
             __DIR__ . '/../Migrations' => base_path('database/migrations'),
         ]);
+    }
+    public function registerResources()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Migrations');
     }
 }
