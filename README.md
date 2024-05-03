@@ -32,11 +32,51 @@ Via Composer
 $ composer require carolezountangni/LogSupervisor
 ```
 
-## Usage
+
+# Setup Migrations and Model
+
+
+### Insérer le ServiceProvider dans le config/app.phpfichier :
 
 ``` php
-$skeleton = new carolezountangni\LogSupervisor();
-echo $skeleton->echoPhrase('Hello, League!');
+'providers' => [
+    // ...
+    carolezountangni\LogSupervisor\src\Providers\LSupervisorProvider::class,
+],
+```
+### Insérer le middleware dans le app/Http/Kernel.php fichier :
+
+``` php
+protected $routeMiddleware = [
+       
+        'activity' =>  carolezountangni\LogSupervisor\src\Http\Middeleware\Activity::class,
+    ];
+```
+### Créer la migration  :
+
+``` php
+protected $routeMiddleware = [
+       
+        'activity' =>  carolezountangni\LogSupervisor\src\Http\Middeleware\Activity::class,
+    ];
+```
+
+
+Make model with migration file at the same time.
+<br/> Note: At the package the model used is under "App\Models\" then please do so.
+
+```
+php artisan make:model Activity -m
+```
+
+LlsActivity  Table Structure
+
+```
+```
+Migrate table using composer and it's automatically create table in the database
+
+```
+php artisan migrate
 ```
 
 ## Change log
