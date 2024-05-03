@@ -1,18 +1,18 @@
 {
-    "name": ":vendor/:package_name",
+    "name": "carolezountangni/LogSupervisor",
     "type": "library",
-    "description": ":package_description",
+    "description": "Save all user logs on a Laravel Application",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "carolezountangni",
+        "LogSupervisor"
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/carolezountangni/LogSupervisor",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Carole Zountangni",
+            "email": "czountangni@gmail.com",
+            "homepage": "https://github.com/carolezountangni",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "carolezountangni\\LogSupervisor\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "carolezountangni\\LogSupervisor\\": "tests"
         }
     },
     "scripts": {
