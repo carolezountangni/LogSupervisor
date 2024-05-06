@@ -29,7 +29,7 @@ vendor/
 Via Composer
 
 ``` bash
- composer require carolezountangni/LogSupervisor
+ composer require carolezountangni/log-supervisor
 ```
 
 
