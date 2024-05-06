@@ -2,7 +2,7 @@
     "name": "carolezountangni/log-supervisor",
     "type": "library",
     "description": "Save all user logs on a Laravel Application",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "keywords": [
         "carolezountangni",
         "LogSupervisor"

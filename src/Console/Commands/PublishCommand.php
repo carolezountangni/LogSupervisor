@@ -9,13 +9,13 @@ use Spatie\Watcher\Watch;
 
 class PublishCommand extends Command
 {
-    protected $signature = 'publish:ls';
+    protected $signature = 'publish:ls {--watch}';
     protected $description = 'Publish  Log supervisor assets';
 
     public function handle()
     {
         $this->call('vendor:publish', [
-            '--tag' => 'laravel-log-supervisor-assets',
+            '--tag' => 'log-supervisor-assets',
             '--force' => true,
         ]);
 
@@ -33,7 +33,7 @@ class PublishCommand extends Command
                 ->onAnyChange(function (string $type, string $path) {
                     if (Str::endsWith($path, 'manifest.json')) {
                         $this->call('vendor:publish', [
-                            '--tag' => 'laravel-log-supervisor-assets',
+                            '--tag' => 'log-supervisor-assets',
                             '--force' => true,
                         ]);
                     }

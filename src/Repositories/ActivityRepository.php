@@ -1,11 +1,11 @@
 <?php
 
-// namespace carolezountangni\LogSupervisor\Repositories;
+namespace carolezountangni\LogSupervisor\Repositories;
 
-namespace App\Repositories;
+// namespace App\Repositories;
 
 use App\Traits\Repository;
-use carolezountangni\LaravelLogSupervisor\Models\Activity;
+use carolezountangni\LogSupervisor\Models\Activity;
 
 class ActivityRepository
 {

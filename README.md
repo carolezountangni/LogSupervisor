@@ -29,7 +29,7 @@ vendor/
 Via Composer
 
 ``` bash
-$ composer require carolezountangni/LogSupervisor
+ composer require carolezountangni/LogSupervisor
 ```
 
 
@@ -41,7 +41,7 @@ $ composer require carolezountangni/LogSupervisor
 ``` php
 'providers' => [
     // ...
-    carolezountangni\LogSupervisor\src\Providers\LSupervisorProvider::class,
+    carolezountangni\LogSupervisor\Providers\LSupervisorProvider::class,
 ],
 ```
 ### Insérer le middleware dans le app/Http/Kernel.php fichier :
@@ -49,7 +49,7 @@ $ composer require carolezountangni/LogSupervisor
 ``` php
 protected $routeMiddleware = [
        
-        'activity' =>  carolezountangni\LogSupervisor\src\Http\Middeleware\Activity::class,
+        'activity' => \carolezountangni\LogSupervisor\Http\Middeleware\Activity::class,
     ];
 ```
 ### Créer la migration  :

@@ -1,6 +1,6 @@
 <?php
 
-namespace carolezountangni\LaravelLogSupervisor\Http\Middeleware;
+namespace carolezountangni\LogSupervisor\Http\Middeleware;
 
 use Closure;
 use Illuminate\Http\Request;
