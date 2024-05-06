@@ -55,10 +55,8 @@ protected $routeMiddleware = [
 ### Créer la migration  :
 
 ``` php
-protected $routeMiddleware = [
-       
-        'activity' =>  carolezountangni\LogSupervisor\src\Http\Middeleware\Activity::class,
-    ];
+php artisan migrate --path=vendor/carolezountangni/log-supervisor/src/Migrations
+
 ```
 
 
