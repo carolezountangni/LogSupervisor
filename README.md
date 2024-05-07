@@ -57,7 +57,7 @@ protected $routeMiddleware = [
 ### Publier les migrations
 
 ``` php
-php artisan migrate --path=vendor/carolezountangni/log-supervisor/src/Migrations
+php artisan migrate
 
 ```
 
