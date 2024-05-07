@@ -36,46 +36,31 @@ Via Composer
 # Setup Migrations and Model
 
 
-### Insérer le ServiceProvider dans le config/app.phpfichier :
+### Dans votre fichier config/app.php, ajoutez le  service provider dans le tableau providers :
 
 ``` php
 'providers' => [
     // ...
-    carolezountangni\LogSupervisor\Providers\LSupervisorProvider::class,
+    carolezountangni\LogSupervisor\LogSupervisorServiceProvider::class,
+    
 ],
 ```
-### Insérer le middleware dans le app/Http/Kernel.php fichier :
+### Dans votre fichier app/Http/Kernel.php, ajoutez le  middleware  dans le tableau des middlewares pour les routes :
 
 ``` php
 protected $routeMiddleware = [
        
-        'activity' => \carolezountangni\LogSupervisor\Http\Middeleware\Activity::class,
+        'activity' => \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
+        
     ];
 ```
-### Créer la migration  :
+### Publier les migrations
 
 ``` php
 php artisan migrate --path=vendor/carolezountangni/log-supervisor/src/Migrations
 
 ```
 
-
-Make model with migration file at the same time.
-<br/> Note: At the package the model used is under "App\Models\" then please do so.
-
-```
-php artisan make:model Activity -m
-```
-
-LlsActivity  Table Structure
-
-```
-```
-Migrate table using composer and it's automatically create table in the database
-
-```
-php artisan migrate
-```
 
 ## Change log
 

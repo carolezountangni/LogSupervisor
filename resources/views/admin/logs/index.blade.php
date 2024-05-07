@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('log-supervisor::layout')
 
 {{-- @section('title' , 'Logs') --}}
-@section('titre' , ('Logs')   )
+@section('title' , ('Logs')   )
 
 
 @section('content')

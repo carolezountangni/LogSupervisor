@@ -1,7 +1,7 @@
 <?php
 
 
-use carolezountangni\LaravelLogSupervisor\Http\Controllers\LogController;
+use carolezountangni\LogSupervisor\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +19,8 @@ Route::middleware(['auth'])->group(function () {
     Route::name('admin.')->group(function () {
 
         //Logs
-        Route::get('/ls/admin/logs', [LogController::class, 'index'])->name('logs.index');
-        Route::get('/ls/admin/logs/show', [LogController::class, 'show'])->name('logs.show');
-        Route::get('/ls/admin/user/logs', [UserController::class, 'logs'])->name('user.logs');
+        Route::get('/log-supervisor/admin/logs', [LogController::class, 'index'])->name('logs.index');
+        Route::get('/log-supervisor/admin/logs/show', [LogController::class, 'show'])->name('logs.show');
+        Route::get('/log-supervisor/admin/user/logs', [LogController::class, 'logs'])->name('user.logs');
     });
 });

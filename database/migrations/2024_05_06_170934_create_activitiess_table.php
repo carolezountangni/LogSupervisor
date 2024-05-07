@@ -13,7 +13,7 @@ class CreateActivitiessTable extends Migration
      */
     public function up()
     {
-        Schema::create('activitiess', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('action')->nullable();
             $table->longText('description')->nullable();
@@ -46,6 +46,6 @@ class CreateActivitiessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activitiess');
+        Schema::dropIfExists('activities');
     }
 }

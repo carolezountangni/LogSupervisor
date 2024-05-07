@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('log-supervisor::layout')
 
 @section('title'," Consulter un log "  )
-@section('titre', "Consulter un log " )
 
 @section('content')
     

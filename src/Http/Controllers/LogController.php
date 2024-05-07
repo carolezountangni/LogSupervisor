@@ -4,7 +4,7 @@ namespace carolezountangni\LogSupervisor\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Models\Activity;
+use carolezountangni\LogSupervisor\Models\Activity;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 

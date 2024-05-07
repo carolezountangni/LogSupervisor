@@ -1,6 +1,6 @@
 <?php
 
-namespace carolezountangni\LogSupervisor\Http\Middeleware;
+namespace carolezountangni\LogSupervisor\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
@@ -55,7 +55,9 @@ class Activity
             'role' => $role,
             'group' => NULL,
             'user_agent' => $request->header('User-Agent'),
-            'route' => $request->route()->action['as'],
+            // 'route' => $request->route()->action['as'],
+            'route' => $request->route() ? $request->route()->action['as'] : 'none',
+
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
             'locale' => $request->server('HTTP_ACCEPT_LANGUAGE'),
