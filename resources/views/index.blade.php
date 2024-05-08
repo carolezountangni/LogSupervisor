@@ -1,4 +1,4 @@
-@extends('log-supervisor::layout')
+@extends('layout')
 
 {{-- @section('title' , 'Logs') --}}
 @section('title' , ('Logs')   )

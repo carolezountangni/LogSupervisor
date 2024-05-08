@@ -42,6 +42,27 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "carolezountangni\\LogSupervisor\\LogSupervisorServiceProvider"
+            ],
+            "publish": [
+                {
+                    "tag": "migrations-ls",
+                    "path": "carolezountangni/LogSupervisor/database/migrations/log-supervisor"
+                },
+                {
+                    "tag": "config-ls",
+                    "path": "carolezountangni/LogSupervisor/config"
+                }
+            ],
+            "views": [
+                {
+                    "resource": "resources/views",
+                    "namespace": "log-supervisor"
+                }
+            ]
         }
     },
     "config": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace carolezountangni\LogSupervisor\Http\Controllers;
+namespace carolezountangni\LogSupervisor\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class LogController extends Controller
         //
         $logs = Activity::with('user')->latest()->get()->orderBy('created_at', 'desc')->paginate(25);
 
-        return view('admin.logs.index', compact("logs"));
+        return view('log-supervisor::index', compact("logs"));
 
         // return view('admin.logs.index', ([
         //     'logs' => $activities
@@ -30,12 +30,12 @@ class LogController extends Controller
      */
     public function show(Activity $activity)
     {
-        return view('admin.logs.show', compact('activity'));
+        return view('log-supervisor::show', compact('activity'));
     }
     public function logs($user_id)
     {
         $activities = Activity::where('user_id', $user_id)->latest()->get();
-        return view('admin.logs.index', [
+        return view('log-supervisor::index', [
             'logs' => $activities->paginate(25),
 
         ]);

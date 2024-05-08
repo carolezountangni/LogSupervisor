@@ -29,25 +29,29 @@ class LogSupervisorServiceProvider extends ServiceProvider
     {
 
         // Publier les fichiers de configuration
-        // $this->publishes([
-        //     __DIR__ . '/path/vers/le/dossier/de/configuration' => config_path('nom_du_fichier.php'),
-        // ], 'config');
+        $this->publishes([
+            __DIR__ . '/../config/log-supervisor.php' => config_path('log-supervisor.php'),
+        ], 'config-ls');
 
         // Publier les fichiers de migration
-        // $this->publishes([
-        //     __DIR__ . '/../database/migrations' => database_path('migrations'),
-        // ], 'migrations');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->publishes([
+            __DIR__ . '/../database/migrations/log-supervisor' => database_path('migrations'),
+        ], 'migrations-ls');
+        // charger les migrations 
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
 
         // Publier les fichiers de ressources
         // $this->publishes([
         //     __DIR__ . '/../resources' => resource_path('views/vendor/log-supervisor'),
         // ], 'views');
 
-        $this->loadViewsFrom(
-            __DIR__ . '/../resources/views',
-            'log-supervisor'
-        );
+        // $this->loadViewsFrom(
+        //     __DIR__ . '/../resources/views',
+        //     'log-supervisor'
+        // );
+
+        // Chargement des vues depuis le répertoire du package
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'log-supervisor');
         //Publier les routes 
         // Route::namespace('carolezountangni\LogSupervisor\Http\Controllers')
         //     ->group(__DIR__ . '\routes\web.php');
