@@ -59,6 +59,9 @@ protected $routeMiddleware = [
 ``` php
 php artisan migrate
 
+php artisan vendor:publish --tag=config-ls
+php artisan vendor:publish --tag=views-ls
+
 ```
 
 

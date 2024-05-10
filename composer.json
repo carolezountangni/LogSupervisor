@@ -55,6 +55,10 @@
                 {
                     "tag": "config-ls",
                     "path": "carolezountangni/LogSupervisor/config"
+                },
+                {
+                    "tag": "views-ls",
+                    "path": "carolezountangni/LogSupervisor/ressources"
                 }
             ],
             "views": [

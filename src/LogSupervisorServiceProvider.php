@@ -41,21 +41,15 @@ class LogSupervisorServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
 
         // Publier les fichiers de ressources
-        // $this->publishes([
-        //     __DIR__ . '/../resources' => resource_path('views/vendor/log-supervisor'),
-        // ], 'views');
+        $this->publishes([
+            __DIR__ . '/../resources' => resource_path('views'),
+        ], 'views-ls');
 
-        // $this->loadViewsFrom(
-        //     __DIR__ . '/../resources/views',
-        //     'log-supervisor'
-        // );
+
 
         // Chargement des vues depuis le répertoire du package
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'log-supervisor');
+        $this->loadViewsFrom(__DIR__ . '/../resources', 'log-supervisor');
         //Publier les routes 
-        // Route::namespace('carolezountangni\LogSupervisor\Http\Controllers')
-        //     ->group(__DIR__ . '\routes\web.php');
-
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
     }
 }

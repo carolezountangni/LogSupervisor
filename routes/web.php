@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(['auth'])->group(function () {
-    Route::name('admin.')->group(function () {
+Route::group(['namespace' => 'carolezountangni\LogSupervisor\Controllers'], function () {
 
-        //Logs
-        Route::get('/log-supervisor/logs', [LogController::class, 'index'])->name('logs.index');
-        Route::get('/log-supervisor/logs/show', [LogController::class, 'show'])->name('logs.show');
-        Route::get('/log-supervisor/user/logs', [LogController::class, 'logs'])->name('user.logs');
+
+
+    Route::middleware(['auth'])->group(function () {
+        Route::name('admin.')->group(function () {
+
+            //Logs
+            Route::get('/log-supervisor/logs', [LogController::class, 'index'])->name('logs.index');
+            Route::get('/log-supervisor/logs/show', [LogController::class, 'show'])->name('logs.show');
+            Route::get('/log-supervisor/user/logs', [LogController::class, 'logs'])->name('user.logs');
+        });
     });
 });
