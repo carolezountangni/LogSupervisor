@@ -56,7 +56,7 @@ class Activity
             'group' => NULL,
             'user_agent' => $request->header('User-Agent'),
             // 'route' => $request->route()->action['as'],
-            'route' => $request->route() ? $request->route()->action['as'] : 'none',
+            'route' => isset($request->route()->action['as'])  ? $request->route()->action['as'] : null,
 
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
