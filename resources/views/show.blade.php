@@ -1,10 +1,10 @@
-@extends('layout')
+@extends('log-supervisor::layout')
 
 @section('title'," Consulter un log "  )
 
 @section('content')
     
-<table class=" table table-striped">
+<table class=" table table-striped table-responsive-sm text-wrap">
         <thead>
             <tr>
                 <th>User</th>
@@ -31,10 +31,10 @@
                         {{$activity->user? $activity->user->name : "Anonyme" }}
                     </td>
                     <td>{{ $activity->action }}</td>
-                    <td>{{ $activity->description }}</td>
+                    <td class="col-md-2">{{ $activity->description }}</td>
                     <td>{{ $activity->role }}</td>
                     <td>{{ $activity->group }}</td>
-                    <td>{{ $activity->user_agent }}</td>
+                    <td  class="col-md-2">{{ $activity->user_agent }}</td>
                     <td>{{ $activity->route }}</td>
                     <td>{{ $activity->referrer }}</td>
                     <td>{{ $activity->method }}</td>

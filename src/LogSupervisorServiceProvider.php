@@ -32,8 +32,8 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // $this->LoadResources();
-        // $this->registerRoutes();
+        $this->LoadResources();
+        $this->registerRoutes();
         $this->defineAssetPublishing();
     }
     /**
@@ -44,7 +44,19 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         //Chargement des routes depuis le répertoire du package
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        Route::group($this->routeConfigutation(), function () {
+
+            $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        });
+    }
+    public function routeConfigutation()
+    {
+
+        return [
+            'prefix' => 'lg',
+
+            'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
+        ];
     }
     /**
      * Log Supervisor  publishing resources.
@@ -78,9 +90,9 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function LoadResources()
     {
         // Chargement des vues depuis le répertoire du package
-        $this->loadViewsFrom(__DIR__ . '/../resources', 'log-supervisor');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'log-supervisor');
 
         // Chargement des migrations depuis le répertoire du package 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
+        // $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
     }
 }

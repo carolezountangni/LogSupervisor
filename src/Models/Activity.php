@@ -29,7 +29,7 @@ class Activity extends Model
         // 'platform', // le système d'exploitation
         // 'device', //moteur de rendu de pages Web 
         'ip_address', // l'adresse ip de l'utilisateur 
-        'attributes' => 'json'
+        'attributes',
 
 
     ];
@@ -40,7 +40,7 @@ class Activity extends Model
     ];
 
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

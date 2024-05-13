@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('log-supervisor::layout')
 
 {{-- @section('title' , 'Logs') --}}
 @section('title' , ('Logs')   )
@@ -7,14 +7,14 @@
 @section('content')
 
     
-    <table class=" table table-striped">
+    <table class=" table table-striped table-responsive text-wrap">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Rôle</th>
-                <th>Action</th>
-                <th>Méthode</th>
-                <th class="text-end"> Actions</th>
+                <th class="col-md-2">User</th>
+                <th class="col-md-2">Rôle</th>
+                <th class="col-md-2">Action</th>
+                <th class="col-md-2">Méthode</th>
+                <th class=""> Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,17 +22,17 @@
                             
             @forelse ($logs as $activity)
                 <tr>
-                    <td> 
+                    <td class="col-md-2"> 
                         {{$activity->user? $activity->user->name : "Anonyme" }}
                     </td>
-                    <td>{{ $activity->role }}</td>
-                    <td>{{ $activity->action}} </td>
+                    <td class="col-md-2">{{ $activity->role }}</td>
+                    <td class="col-md-2">{{ $activity->action}} </td>
                     
-                    <td>{{ $activity->method }}</td>
+                    <td class="col-md-2">{{ $activity->method }}</td>
         
                     <td>
                         <div class="d-flex gap-2 m-100 justify-content-end">
-                            <a href="{{ route('admin.logs.show', $activity)}}" class="btn btn-primary">Voir</a>
+                            <a href="{{ route('laravel.logs.show', $activity->id)}}" class="btn btn-primary">Voir</a>
                          
                         </div>
                     </td>
