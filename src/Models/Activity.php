@@ -2,13 +2,12 @@
 
 namespace carolezountangni\LogSupervisor\Models;
 
-// namespace App\Models;
-
-
+use App\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
+
 
 class Activity extends Model
 {
@@ -35,7 +34,9 @@ class Activity extends Model
 
     ];
     protected $casts = [
-        'attributes' => 'json', //les attributs de la requête
+        'attributes'  => 'json', //les attributs de la requête
+
+        // 'attributes'  => Json::class, //les attributs de la requête
     ];
 
 

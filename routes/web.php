@@ -20,7 +20,7 @@ Route::group(['namespace' => 'carolezountangni\LogSupervisor\Controllers'], func
 
 
     Route::middleware(['auth'])->group(function () {
-        Route::name('admin.')->group(function () {
+        Route::name('lg.')->group(function () {
 
             //Logs
             Route::get('/log-supervisor/logs', [LogController::class, 'index'])->name('logs.index');

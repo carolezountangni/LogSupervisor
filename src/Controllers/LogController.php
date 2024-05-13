@@ -5,8 +5,8 @@ namespace carolezountangni\LogSupervisor\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use carolezountangni\LogSupervisor\Models\Activity;
-// use App\Http\Controllers\Controller;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
+// use Illuminate\Routing\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +21,7 @@ class LogController extends Controller
         $logs = Activity::with('user')->latest()->get()->orderBy('created_at', 'desc')->paginate(25);
         dd($logs);
 
-        return view('log-supervisor::index', compact("logs"));
+        return view(public_path('vendor/carolezountangni/log-supervisor/resources/views/index'));
 
         // return view('admin.logs.index', ([
         //     'logs' => $activities

@@ -57,10 +57,9 @@ protected $routeMiddleware = [
 ### Publier les migrations
 
 ``` php
+php artisan vendor:publish --tag=migrations-ls
 php artisan migrate
 
-php artisan vendor:publish --tag=config-ls
-php artisan vendor:publish --tag=views-ls
 
 ```
 
@@ -71,8 +70,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Testing
 
-``` bash
-$ composer test
+``` php
+ composer test
 ```
 
 ## Contributing

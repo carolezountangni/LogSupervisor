@@ -7,17 +7,21 @@ namespace carolezountangni\LogSupervisor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use carolezountangni\LogSupervisor\Console\Commands\PublishCommand;
-
 
 class LogSupervisorServiceProvider extends ServiceProvider
 
 {
 
+    private string $name = 'log-supervisor';
 
-    /** 
+    public static function basePath(string $path): string
+    {
+        return __DIR__ . '/..' . $path;
+    }
+
+
+    /***
      * Enregistrer des services,des liaisons,des configurations etc..
-     * 
      */
     public function register()
     {
@@ -28,28 +32,55 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        // $this->LoadResources();
+        // $this->registerRoutes();
+        $this->defineAssetPublishing();
+    }
+    /**
+     * Register the Log Supervisor routes.
+     *
+     * @return void
+     */
+    protected function registerRoutes()
+    {
+        //Chargement des routes depuis le répertoire du package
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+    }
+    /**
+     * Log Supervisor  publishing resources.
+     *
+     * @return void
+     */
+
+    protected function defineAssetPublishing()
+    {
+
         // Publier les fichiers de configuration
         $this->publishes([
-            __DIR__ . '/../config/log-supervisor.php' => config_path('log-supervisor.php'),
+            self::basePath('/config/log-supervisor.php') => config_path('log-supervisor.php'),
         ], 'config-ls');
 
         // Publier les fichiers de migration
         $this->publishes([
-            __DIR__ . '/../database/migrations/log-supervisor' => database_path('migrations'),
+            self::basePath('/database/migrations/log-supervisor') => database_path('migrations'),
         ], 'migrations-ls');
-        // charger les migrations 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
 
         // Publier les fichiers de ressources
-        $this->publishes([
-            __DIR__ . '/../resources' => resource_path('views'),
-        ], 'views-ls');
-
-
-
+        // $this->publishes([
+        //     self::basePath('/resources') => resource_path('views'),
+        // ], 'views-ls');
+    }
+    /**
+     * Load the resources.
+     *
+     * @return void
+     */
+    protected function LoadResources()
+    {
         // Chargement des vues depuis le répertoire du package
         $this->loadViewsFrom(__DIR__ . '/../resources', 'log-supervisor');
-        //Publier les routes 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        // Chargement des migrations depuis le répertoire du package 
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
     }
 }
