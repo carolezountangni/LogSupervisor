@@ -54,16 +54,27 @@ protected $routeMiddleware = [
         
     ];
 ```
-### Publier les migrations
+### Publier les migrations et le fichier de configuration
 
 ``` php
 php artisan vendor:publish --tag=migrations-ls
 php artisan migrate
-
-
+php artisan vendor:publish --tag=config-ls
 ```
 
+## Affichage des logs au niveau d'une liste d'utilisateurs que vous avez créée par le biais d'un bouton.
+### Votre table d'utilisateur dit s'appeler "User" obligatoirement
 
+``` php
+<a href="{{ route('lg.logs.logs', $user->id) }}" class=" btn btn-warning m-1">Logs</a>
+```
+### Accès aux vues du package 
+
+Once the installation is complete, you will be able to access **Log Supervisor** directly in your browser.
+
+By default, the application is available at: `{APP_URL}/log-supervisor`.
+
+(for example: `https://my-app.test/log-supervisor`)
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

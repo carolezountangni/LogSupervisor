@@ -53,7 +53,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     {
 
         return [
-            'prefix' => 'lg',
+            'prefix' => 'log-supervisor',
 
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];

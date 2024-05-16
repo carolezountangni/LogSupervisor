@@ -1,8 +1,9 @@
 <?php
 
 
-use carolezountangni\LogSupervisor\Controllers\Http\LogController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// Route::group(['namespace' => 'carolezountangni\LogSupervisor\Controllers'], function () {
+// // Récupérer les rôles autorisés depuis la configuration
+// $rolesAutorises = Config::get('log-supervisor.roles');
+// $user = Auth::user();
+// // dd($user);
+// // dd(in_array(Auth::user()->getRole(), $rolesAutorises));
+// // Vérifier si l'utilisateur actuel possède l'un des rôles autorisés
+// if (Auth::check() && in_array(Auth::user()->getRole(), $rolesAutorises)) {
 
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::name('lg.')->group(function () {
-
-        //Logs
-        Route::get('/log-supervisor/logs', [LogController::class, 'index'])->name('logs.index');
-        Route::get('/log-supervisor/logs/show', [LogController::class, 'show'])->name('logs.show');
-        Route::get('/log-supervisor/user/logs', [LogController::class, 'logs'])->name('user.logs');
-    });
-});
-// });
-Route::get('/logs', 'LogController@index')->name('lg.logs.index');
-Route::get('/logs/show/{id}', 'LogController@show')->name('lg.logs.show');
-Route::get('/utilisateurs/{utilisateur}/activities', 'LogController@logs')->name('lg.logs.logs');
+// L'utilisateur a accès à la fonctionnalité
+Route::get('/', 'LogController@index')->name('lg.logs.index');
+Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+// } else {
+//     // Rediriger ou renvoyer une erreur d'accès
+//     abort(404);
+// }

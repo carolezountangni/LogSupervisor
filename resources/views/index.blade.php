@@ -1,7 +1,7 @@
 @extends('log-supervisor::layout')
 
-{{-- @section('title' , 'Logs') --}}
-@section('title' , ('Logs')   )
+{{-- @section('title' , ('Logs') --}}
+@section('title' , isset($utilisateur )? "Logs de l'utilisateur : ".$utilisateur->name : "Logs"  )
 
 
 @section('content')
@@ -32,7 +32,7 @@
         
                     <td>
                         <div class="d-flex gap-2 m-100 justify-content-end">
-                            <a href="{{ route('laravel.logs.show', $activity->id)}}" class="btn btn-primary">Voir</a>
+                            <a href="{{ route('lg.logs.show', $activity->id)}}" class="btn btn-primary">Voir</a>
                          
                         </div>
                     </td>

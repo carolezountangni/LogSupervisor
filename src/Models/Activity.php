@@ -40,7 +40,7 @@ class Activity extends Model
     ];
 
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

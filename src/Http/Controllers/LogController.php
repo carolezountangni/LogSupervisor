@@ -33,10 +33,12 @@ class LogController extends Controller
     }
 
 
-    public function logs(User $utilisateur)
+    public function logs(string $id)
     {
-        $activities = $utilisateur->activities;
-        // $activities = $activities::paginate(25);
+        $activities = Activity::where('user_id', $id)->paginate(20);
+        $utilisateur = User::findOrFail($id);
+
+
         return view('log-supervisor::index', [
             'logs' => $activities,
             'utilisateur' => $utilisateur
