@@ -59,12 +59,10 @@
                 {
                     "tag": "views-ls",
                     "path": "carolezountangni/LogSupervisor/ressources"
-                }
-            ],
-            "views": [
+                },
                 {
-                    "resource": "resources/views",
-                    "namespace": "log-supervisor"
+                    "tag": "public-ls",
+                    "path": "carolezountangni/LogSupervisor/public"
                 }
             ]
         }

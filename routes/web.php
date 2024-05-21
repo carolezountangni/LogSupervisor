@@ -24,11 +24,18 @@ use Illuminate\Support\Facades\Auth;
 // // Vérifier si l'utilisateur actuel possède l'un des rôles autorisés
 // if (Auth::check() && in_array(Auth::user()->getRole(), $rolesAutorises)) {
 
+//     Route::get('/test', 'ouuuii')->name('lg.logs.tests');
+// } else {
+//     // Rediriger ou renvoyer une erreur d'accès
+//     // abort(404, 'Page non trouvée');
+// }
+
 // L'utilisateur a accès à la fonctionnalité
+// Route::middleware(['auth'])->group(
+//     function () {
+
 Route::get('/', 'LogController@index')->name('lg.logs.index');
 Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
 Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
-// } else {
-//     // Rediriger ou renvoyer une erreur d'accès
-//     abort(404);
-// }
+//     }
+// );

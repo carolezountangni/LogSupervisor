@@ -3,6 +3,7 @@
 namespace carolezountangni\LogSupervisor\Http\Controllers;
 
 use App\Models\User;
+use carolezountangni\LogSupervisor\Facades\LogSupervisor;
 use Illuminate\Http\Request;
 use carolezountangni\LogSupervisor\Models\Activity;
 // use App\Http\Controllers\Controller;
@@ -29,6 +30,15 @@ class LogController extends Controller
     public function show($id)
     {
         $activity = Activity::findOrFail($id);
+        $data = [
+            // 'version' => LogSupervisor::version(),
+            'app_name' => config('app.name'),
+            'path' => config('log-supervisor.route_path'),
+            'back_to_system_url' => config('log-supervisor.back_to_system_url'),
+            'back_to_system_label' => config('log-supervisor.back_to_system_label'),
+
+        ];
+
         return view('log-supervisor::show', compact('activity'));
     }
 

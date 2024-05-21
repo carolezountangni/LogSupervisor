@@ -1,7 +1,5 @@
 <?php
 
-// declare(strict_types=1);
-
 namespace carolezountangni\LogSupervisor;
 
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +29,31 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        // Ajoute le middleware 'auth' au groupe middleware global 'web'
+        // $this->app['router']->pushMiddlewareToGroup('web', \Illuminate\Auth\Middleware\Authenticate::class);
+        $this->registerMiddleware();
         $this->LoadResources();
         $this->registerRoutes();
         $this->defineAssetPublishing();
+    }
+
+    /** Register the Log Supervisor middlewares */
+
+    public function registerMiddleware()
+    {
+
+        // Charger la configuration de votre package
+        $this->mergeConfigFrom(self::basePath('/config/log-supervisor.php'), 'log-supervisor');
+
+        // Récupérer les middlewares définis dans la configuration
+        $middlewares = config('log-supervisor.middlewares');
+
+        // Appliquer les middlewares globalement aux routes de votre package
+        foreach ($middlewares as $middleware) {
+            $this->app['router']->pushMiddlewareToGroup('auth', $middleware);
+            // $this->app['router']->aliasMiddleware('your-middleware', \Illuminate\Auth\Middleware\Authenticate::class);
+
+        }
     }
     /**
      * Register the Log Supervisor routes.
@@ -54,6 +73,8 @@ class LogSupervisorServiceProvider extends ServiceProvider
 
         return [
             'prefix' => 'log-supervisor',
+            // 'middleware' => ['auth', 'activity'],
+
 
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
@@ -77,6 +98,13 @@ class LogSupervisorServiceProvider extends ServiceProvider
             self::basePath('/database/migrations/log-supervisor') => database_path('migrations'),
         ], 'migrations-ls');
 
+        $this->publishes(
+            [
+                self::basePath('/public') => public_path('vendor/log-supervisor'),
+            ],
+            'public-ls'
+        );
+
         // Publier les fichiers de ressources
         // $this->publishes([
         //     self::basePath('/resources') => resource_path('views'),
@@ -95,4 +123,4 @@ class LogSupervisorServiceProvider extends ServiceProvider
         // Chargement des migrations depuis le répertoire du package 
         // $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
     }
-}
+} #}

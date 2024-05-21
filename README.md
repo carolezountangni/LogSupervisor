@@ -60,6 +60,7 @@ protected $routeMiddleware = [
 php artisan vendor:publish --tag=migrations-ls
 php artisan migrate
 php artisan vendor:publish --tag=config-ls
+php artisan vendor:publish --tag=public-ls
 ```
 
 ## Affichage des logs au niveau d'une liste d'utilisateurs que vous avez créée par le biais d'un bouton.

@@ -10,14 +10,25 @@ use Illuminate\Support\Facades\Config;
 
 class RoleMiddleware
 {
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next)
     {
-        $allowedRoles = Config::get('log-supervisor.roles.' . $role, []);
-
-        if (!Auth::check() || !Auth::user()->hasAnyRole($allowedRoles)) {
-            abort(403, 'Accès non autorisé.');
+        // Vérifier si l'utilisateur est authentifié
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        return $next($request);
+        // Obtenir les rôles définis dans le fichier de configuration du package
+        $allowedRoles = Config::get('log-supervisor.roles');
+        // dd(Auth::user()->role);
+        $allowedRoles = ['ROLE_ADMIN'];
+
+        // Vérifier si l'utilisateur a l'un des rôles autorisés
+
+        if (Auth::user()->hasAnyRole($allowedRoles)) {
+            return $next($request);
+        }
+
+        // Redirection ou réponse en cas d'accès refusé
+        return abort(403, 'Unauthorized action.');
     }
 }
