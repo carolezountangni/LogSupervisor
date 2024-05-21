@@ -20,7 +20,7 @@ class RoleMiddleware
         // Obtenir les rôles définis dans le fichier de configuration du package
         $allowedRoles = Config::get('log-supervisor.roles');
         // dd(Auth::user()->role);
-        $allowedRoles = ['ROLE_ADMIN'];
+        // $allowedRoles = ['ROLE_ADMIN'];
 
         // Vérifier si l'utilisateur a l'un des rôles autorisés
 

@@ -38,8 +38,11 @@ class LogController extends Controller
             'back_to_system_label' => config('log-supervisor.back_to_system_label'),
 
         ];
+        $backUrl = config('log-supervisor.back_to_system_url');
+        $backLabel = config('log-supervisor.back_to_system_label');
+        dd($backLabel);
 
-        return view('log-supervisor::show', compact('activity'));
+        return view('log-supervisor::show', compact('activity', 'backUrl', 'backLabel'));
     }
 
 

@@ -30,8 +30,8 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
         // Ajoute le middleware 'auth' au groupe middleware global 'web'
-        // $this->app['router']->pushMiddlewareToGroup('web', \Illuminate\Auth\Middleware\Authenticate::class);
-        $this->registerMiddleware();
+        $this->app['router']->pushMiddlewareToGroup('web', \Illuminate\Auth\Middleware\Authenticate::class);
+        // $this->registerMiddleware();
         $this->LoadResources();
         $this->registerRoutes();
         $this->defineAssetPublishing();
