@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Auth;
 // L'utilisateur a accès à la fonctionnalité
 // Route::middleware(['auth'])->group(
 //     function () {
+// Route::middleware([\carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class])->group(
+//     function () {
 
 Route::get('/', 'LogController@index')->name('lg.logs.index');
 Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
