@@ -1,5 +1,5 @@
 {
-    "name": "carolezountangni/log-supervisor",
+    "name": "log-supervisor",
     "type": "library",
     "description": "Save all user logs on a Laravel Application",
     "version": "0.0.6",
