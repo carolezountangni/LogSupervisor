@@ -5,6 +5,7 @@ namespace carolezountangni\LogSupervisor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 
 class LogSupervisorServiceProvider extends ServiceProvider
 
@@ -74,9 +75,9 @@ class LogSupervisorServiceProvider extends ServiceProvider
         return [
             'prefix' => 'log-supervisor',
             'middleware' => [
-                // 'auth',
-                \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
-                // '\carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class'
+                'web', // Middleware 'web' pour la gestion de la session
+                'auth', // Middleware 'auth' pour l'authentification
+                RoleMiddleware::class, // Middleware personnalisé pour les rôles
             ],
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
