@@ -3,11 +3,9 @@
 
 return [
     'key' => 'log-supervisor',
-    'roles' => [
-        'ROLE_ADMIN'
+    'role' => 'ROLE_ADMIN',
 
-        // Ajoutez d'autres rôles au besoin
-    ],
+
 
 
 
