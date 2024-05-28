@@ -5,7 +5,6 @@ namespace carolezountangni\LogSupervisor\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use carolezountangni\LogSupervisor\Repositories\ActivityRepository;
 use Illuminate\Support\Facades\Config;
 
 class RoleMiddleware
@@ -17,14 +16,11 @@ class RoleMiddleware
             return redirect()->route('login');
         }
 
-        // Obtenir les rôles définis dans le fichier de configuration du package
-        $allowedRoles = Config::get('log-supervisor.roles');
-        // dd($allowedRoles);
-        // $allowedRoles = ['ROLE_ADMIN'];
+        // Obtenir le rôle défini dans le fichier de configuration du package
+        $allowedRole = Config::get('log-supervisor.role');
 
-        // Vérifier si l'utilisateur a l'un des rôles autorisés
-
-        if (Auth::user()->hasAnyRole($allowedRoles)) {
+        // Vérifier si l'utilisateur a le rôle autorisé
+        if (Auth::user()->hasRole($allowedRole)) {
             return $next($request);
         }
 

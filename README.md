@@ -51,6 +51,7 @@ Via Composer
 protected $routeMiddleware = [
        
         'activity' => \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
+        'roleMiddleware' => \carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class,
         
     ];
 ```
@@ -69,6 +70,21 @@ php artisan vendor:publish --tag=public-ls
 ``` php
 <a href="{{ route('lg.logs.logs', $user->id) }}" class=" btn btn-warning m-1">Logs</a>
 ```
+## Fonction à mettre dans son modèle User
+
+````php
+ /**
+     * Vérifie si l'utilisateur a un rôle spécifique.
+     *
+     * @param string $role Le nom du rôle à vérifier.
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        // Votre logique pour vérifier si l'utilisateur a le rôle spécifié
+        return $this->role === $role;
+    }
+````
 ### Accès aux vues du package 
 
 Once the installation is complete, you will be able to access **Log Supervisor** directly in your browser.

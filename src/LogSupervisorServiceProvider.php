@@ -75,9 +75,10 @@ class LogSupervisorServiceProvider extends ServiceProvider
         return [
             'prefix' => 'log-supervisor',
             'middleware' => [
-                'web', // Middleware 'web' pour la gestion de la session
-                'auth', // Middleware 'auth' pour l'authentification
-                RoleMiddleware::class, // Middleware personnalisé pour les rôles
+                // 'web', // Middleware 'web' pour la gestion de la session
+                // 'auth', // Middleware 'auth' pour l'authentification
+                // RoleMiddleware::class, // Middleware personnalisé pour les rôles
+                'roleMiddleware',
             ],
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
