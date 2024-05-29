@@ -35,12 +35,12 @@ use Illuminate\Support\Facades\Auth;
 //     function () {
 // Route::middleware([\carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class])->group(
 //     function () {
-// Route::middleware(['roleMiddleware'])->group(
-//     function () {
+Route::middleware(['roleMiddleware', 'auth'])->group(
+    function () {
 
-Route::get('/', 'LogController@index')->name('lg.logs.index');
-Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
-Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+        Route::get('/', 'LogController@index')->name('lg.logs.index');
+        Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+        Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
         //     }
-//     }
-// );
+    }
+);
