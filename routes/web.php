@@ -16,28 +16,6 @@ use carolezountangni\LogSupervisor\Http\Controllers\LogController;
 |
 */
 
-// // Récupérer les rôles autorisés depuis la configuration
-// $rolesAutorises = Config::get('log-supervisor.roles');
-// $user = Auth::user();
-// // dd($user);
-// // dd(in_array(Auth::user()->getRole(), $rolesAutorises));
-// // Vérifier si l'utilisateur actuel possède l'un des rôles autorisés
-// if (Auth::check() && in_array(Auth::user()->getRole(), $rolesAutorises)) {
-
-//     Route::get('/test', 'ouuuii')->name('lg.logs.tests');
-// } else {
-//     // Rediriger ou renvoyer une erreur d'accès
-//     // abort(404, 'Page non trouvée');
-// }
-
-// L'utilisateur a accès à la fonctionnalité
-// Route::middleware(['auth'])->group(
-//     function () {
-// Route::middleware([\carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class])->group(
-//     function () {
-// Route::middleware(['roleMiddleware', 'auth'])->group(
-//     function () {
-
 Route::get('/', 'LogController@index')->name('lg.logs.index');
 Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
 Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
@@ -46,8 +24,3 @@ Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs
 // Route::get('/', [LogController::class, 'index'])->name('lg.logs.index');
 // Route::get('/show/{id}', [LogController::class, 'show'])->name('lg.logs.show');
 // Route::get('/utilisateurs/{id}/activities', [LogController::class, 'logs'])->name('lg.logs.logs');
-
-
-        //     }
-//     }
-// );

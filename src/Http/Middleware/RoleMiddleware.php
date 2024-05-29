@@ -20,15 +20,12 @@ class RoleMiddleware
         $allowedRole = Config::get('log-supervisor.role');
 
         // Vérifier si l'utilisateur a le rôle autorisé
-        // if (Auth::user()->hasRole($allowedRole)) {
-        // if (Auth::user()->role === $allowedRole) {
-        if (Auth::user()->role === Config::get('log-supervisor.role')) {
-            // Vérifiez le rôle de l'utilisateur
-
+        if (Auth::user()->role === $allowedRole) {
+            // L'utilisateur a le rôle autorisé, continuer la requête
             return $next($request);
         }
 
-        // Redirection ou réponse en cas d'accès refusé
+        // L'utilisateur n'a pas le rôle autorisé, retourner une erreur 403
         return abort(403, 'Unauthorized action.');
     }
 }
