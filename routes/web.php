@@ -1,9 +1,9 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Auth;
+use carolezountangni\LogSupervisor\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
- */
+*/
 
 // // Récupérer les rôles autorisés depuis la configuration
 // $rolesAutorises = Config::get('log-supervisor.roles');
@@ -38,9 +38,16 @@ use Illuminate\Support\Facades\Auth;
 // Route::middleware(['roleMiddleware', 'auth'])->group(
 //     function () {
 
-Route::get('/', 'LogController@index')->name('lg.logs.index');
-Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
-Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+// Route::get('/', 'LogController@index')->name('lg.logs.index');
+// Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+// Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+
+
+Route::get('/', [LogController::class, 'index'])->name('lg.logs.index');
+Route::get('/show/{id}', [LogController::class, 'show'])->name('lg.logs.show');
+Route::get('/utilisateurs/{id}/activities', [LogController::class, 'logs'])->name('lg.logs.logs');
+
+
         //     }
 //     }
 // );

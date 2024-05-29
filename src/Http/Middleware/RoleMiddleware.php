@@ -21,7 +21,8 @@ class RoleMiddleware
 
         // Vérifier si l'utilisateur a le rôle autorisé
         // if (Auth::user()->hasRole($allowedRole)) {
-        if (Auth::user()->role === $allowedRole) {
+        // if (Auth::user()->role === $allowedRole) {
+        if (Auth::user()->role === Config::get('log-supervisor.role')) {
             // Vérifiez le rôle de l'utilisateur
 
             return $next($request);

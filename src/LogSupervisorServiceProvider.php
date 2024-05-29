@@ -69,20 +69,15 @@ class LogSupervisorServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
     }
-    public function routeConfigutation()
+    public function routeConfiguration()
     {
-
         return [
             'prefix' => 'log-supervisor',
-            'middleware' => [
-                // 'web', // Middleware 'web' pour la gestion de la session
-                // 'auth', // Middleware 'auth' pour l'authentification
-                // RoleMiddleware::classs, // Middleware personnalisé pour les rôles
-                'roleMiddleware',
-            ],
+            'middleware' => 'roleMiddleware', // Ajout du middleware ici
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
+
     /**
      * Log Supervisor  publishing resources.
      *
