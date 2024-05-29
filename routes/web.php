@@ -38,14 +38,14 @@ use carolezountangni\LogSupervisor\Http\Controllers\LogController;
 // Route::middleware(['roleMiddleware', 'auth'])->group(
 //     function () {
 
-// Route::get('/', 'LogController@index')->name('lg.logs.index');
-// Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
-// Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+Route::get('/', 'LogController@index')->name('lg.logs.index');
+Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
 
 
-Route::get('/', [LogController::class, 'index'])->name('lg.logs.index');
-Route::get('/show/{id}', [LogController::class, 'show'])->name('lg.logs.show');
-Route::get('/utilisateurs/{id}/activities', [LogController::class, 'logs'])->name('lg.logs.logs');
+// Route::get('/', [LogController::class, 'index'])->name('lg.logs.index');
+// Route::get('/show/{id}', [LogController::class, 'show'])->name('lg.logs.show');
+// Route::get('/utilisateurs/{id}/activities', [LogController::class, 'logs'])->name('lg.logs.logs');
 
 
         //     }
