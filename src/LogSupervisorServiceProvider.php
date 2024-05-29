@@ -47,14 +47,14 @@ class LogSupervisorServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(self::basePath('/config/log-supervisor.php'), 'log-supervisor');
 
         // Récupérer les middlewares définis dans la configuration
-        $middlewares = config('log-supervisor.middlewares');
+        // $middlewares = config('log-supervisor.middlewares');
 
         // Appliquer les middlewares globalement aux routes de votre package
-        foreach ($middlewares as $middleware) {
-            $this->app['router']->pushMiddlewareToGroup('auth', $middleware);
-            // $this->app['router']->aliasMiddleware('your-middleware', \Illuminate\Auth\Middleware\Authenticate::class);
+        // foreach ($middlewares as $middleware) {
+        //     $this->app['router']->pushMiddlewareToGroup('auth', $middleware);
+        //     // $this->app['router']->aliasMiddleware('your-middleware', \Illuminate\Auth\Middleware\Authenticate::class);
 
-        }
+        // }
     }
     /**
      * Register the Log Supervisor routes.
@@ -64,7 +64,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         //Chargement des routes depuis le répertoire du package
-        Route::group($this->routeConfigutation(), function () {
+        Route::group($this->routeConfiguration(), function () {
 
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
@@ -77,6 +77,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
+
 
     /**
      * Log Supervisor  publishing resources.
