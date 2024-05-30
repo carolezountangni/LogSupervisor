@@ -40,9 +40,14 @@ class LogController extends Controller
         ];
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
-        dd($backLabel);
 
-        return view('log-supervisor::show', compact('activity', 'backUrl', 'backLabel'));
+        // return view('log-supervisor::show', compact('activity', 'backUrl', 'backLabel'));
+
+
+        // Chemin complet vers le fichier de vue dans le dossier vendor après publication
+        $viewPath = 'vendor.carolezountangni.log-supervisor.show';
+
+        return View::make($viewPath, compact('activity', 'backUrl', 'backLabel'));
     }
 
 
