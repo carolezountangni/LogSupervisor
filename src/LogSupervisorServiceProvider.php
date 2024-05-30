@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class LogSupervisorServiceProvider extends ServiceProvider
 
@@ -73,7 +74,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => 'log-supervisor',
-            'middleware' => RoleMiddleware::class,
+            'middleware' => [RoleMiddleware::class, Authenticate::class], // Utiliser RoleMiddleware et Authenticate comme middlewares
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
