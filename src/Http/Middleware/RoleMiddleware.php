@@ -15,7 +15,7 @@ class RoleMiddleware
         // Vérifier si l'utilisateur est authentifié
         if (!Auth::check()) {
             // Rediriger vers la page de connexion
-            return redirect()->route(RouteName::LOGIN);
+            return redirect()->route('login');
         }
 
         // Obtenir le rôle défini dans le fichier de configuration du package
