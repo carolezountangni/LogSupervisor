@@ -51,18 +51,7 @@ class LogController extends Controller
         $utilisateur = User::findOrFail($id);
 
 
-        // return view('log-supervisor::index', [
-        //     'logs' => $activities,
-        //     'utilisateur' => $utilisateur
-
-        // ]);
-
-
-
-        // Chemin complet vers le fichier de vue dans le dossier vendor après publication
-        $viewPath = 'vendor.carolezountangni.log-supervisor.index';
-
-        return View::make($viewPath, [
+        return view('log-supervisor::index', [
             'logs' => $activities,
             'utilisateur' => $utilisateur
 
