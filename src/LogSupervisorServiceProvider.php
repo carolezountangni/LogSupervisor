@@ -73,7 +73,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => 'log-supervisor',
-            // 'middleware' => 'roleMiddleware', // Ajout du middleware 
+            'middleware' => 'roleMiddleware', // Ajout du middleware 
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }

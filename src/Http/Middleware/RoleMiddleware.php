@@ -13,19 +13,27 @@ class RoleMiddleware
     {
         // Vérifier si l'utilisateur est authentifié
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect()->route('login'); // Utilisation de la constante pour le nom de route
         }
 
         // Obtenir le rôle défini dans le fichier de configuration du package
         $allowedRole = Config::get('log-supervisor.role');
 
-        // Vérifier si l'utilisateur a le rôle autorisé
-        if (Auth::user()->role === $allowedRole) {
-            // L'utilisateur a le rôle autorisé, continuer la requête
-            return $next($request);
+        // Vérifier si le rôle autorisé est défini dans la configuration
+        if (!$allowedRole) {
+            // Si le rôle autorisé n'est pas défini, retourner une erreur 500
+            return abort(500, 'Role non défini dans la configuration.');
         }
 
-        // L'utilisateur n'a pas le rôle autorisé, retourner une erreur 403
-        return abort(403, 'Unauthorized action.');
+        // Vérifier si l'utilisateur a le rôle autorisé
+        $userRole = Auth::user()->role;
+
+        if (!$userRole || $userRole !== $allowedRole) {
+            // Si l'utilisateur n'a pas le rôle autorisé, retourner une erreur 403
+            return abort(403, 'Accès non autorisé.');
+        }
+
+        // L'utilisateur a le rôle autorisé, continuer la requête
+        return $next($request);
     }
 }
