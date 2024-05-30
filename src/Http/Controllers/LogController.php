@@ -41,13 +41,7 @@ class LogController extends Controller
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
 
-        // return view('log-supervisor::show', compact('activity', 'backUrl', 'backLabel'));
-
-
-        // Chemin complet vers le fichier de vue dans le dossier vendor après publication
-        $viewPath = 'vendor.carolezountangni.log-supervisor.show';
-
-        return View::make($viewPath, compact('activity', 'backUrl', 'backLabel'));
+        return view('log-supervisor::show', compact('activity', 'backUrl', 'backLabel'));
     }
 
 
@@ -57,7 +51,18 @@ class LogController extends Controller
         $utilisateur = User::findOrFail($id);
 
 
-        return view('log-supervisor::index', [
+        // return view('log-supervisor::index', [
+        //     'logs' => $activities,
+        //     'utilisateur' => $utilisateur
+
+        // ]);
+
+
+
+        // Chemin complet vers le fichier de vue dans le dossier vendor après publication
+        $viewPath = 'vendor.carolezountangni.log-supervisor.index';
+
+        return View::make($viewPath, [
             'logs' => $activities,
             'utilisateur' => $utilisateur
 
