@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Routing\RouteName;
 
 class RoleMiddleware
 {
@@ -13,7 +14,8 @@ class RoleMiddleware
     {
         // Vérifier si l'utilisateur est authentifié
         if (!Auth::check()) {
-            return redirect()->route('login'); // Utilisation de la constante pour le nom de route
+            // Rediriger vers la page de connexion
+            return redirect()->route(RouteName::LOGIN);
         }
 
         // Obtenir le rôle défini dans le fichier de configuration du package
