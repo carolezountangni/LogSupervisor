@@ -19,8 +19,8 @@ use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 
 
 // Route::middleware(['roleMiddleware'])->group(function () {
-Route::get('/', 'LogController@index')->name('lg.logs.index')->middleware('');
-Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show')->middleware('');
+Route::get('/', LogController::class, 'index')->name('lg.logs.index')->middleware('');
+Route::get('/show/{id}', LogController::class, 'show')->name('lg.logs.show')->middleware('');
 Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs')->middleware('');
 // });
 
