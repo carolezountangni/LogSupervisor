@@ -2,6 +2,7 @@
 
 namespace carolezountangni\LogSupervisor\Http\Controllers;
 
+use App\Http\Requests\SearchActivityRequest as RequestsSearchActivityRequest;
 use App\Models\User;
 use carolezountangni\LogSupervisor\Facades\LogSupervisor;
 use Illuminate\Http\Request;
@@ -14,8 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LogController extends Controller
 {
-
-
     public function index(SearchActivityRequest $request)
     {
 
