@@ -7,7 +7,7 @@
 @section('content')
 
 
-    <div class="bg-light p-5 mb-1 text-center">
+    <div class="bg-ligh p-5 mb-1 text-center">
         <form action="" method="get" class="container d-flex gap-2">
 
         

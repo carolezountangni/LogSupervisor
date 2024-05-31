@@ -55,7 +55,7 @@ class LogController extends Controller
     }
 
 
-    public function logs(string $id)
+    public function logs(string $id, SearchActivityRequest $request)
     {
 
         $query = Activity::query()->where('user_id', $id)->orderBy('created_at', 'desc');
