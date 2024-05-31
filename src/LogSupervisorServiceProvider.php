@@ -37,10 +37,31 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerMiddleware();
         $this->loadResources();
-        $this->registerRoutes();
         $this->defineAssetPublishing();
     }
+
+    public function registerMiddleware()
+    {
+        // Charger la configuration de votre package
+        $this->mergeConfigFrom(self::basePath('/config/log-supervisor.php'), 'log-supervisor');
+
+        // Récupérer les middlewares définis dans la configuration
+        $middlewares = config('log-supervisor.middlewares');
+
+        // Charger les routes du package
+        $this->registerRoutes();
+
+        // $this->loadRoutesFrom(__DIR__ . '/path/to/your/routes.php');
+
+        // Appliquer les middlewares aux routes du package
+        foreach ($middlewares as $middleware) {
+            $this->app['router']->middleware($middleware);
+        }
+    }
+
+
 
     /**
      * Load the package resources.
@@ -83,7 +104,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => 'log-supervisor',
-            'middleware' => [RoleMiddleware::class, Authenticate::class],
+            // 'middleware' => [RoleMiddleware::class, Authenticate::class],
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
