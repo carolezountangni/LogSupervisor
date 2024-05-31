@@ -6,6 +6,25 @@
 
 @section('content')
 
+
+    <div class="bg-light p-5 mb-1 text-center">
+        <form action="" method="get" class="container d-flex gap-2">
+
+        
+            <input type="date" placeholder="Date ajout" class="form-control" name="created_at" value="{{ $input['created_at'] ?? ''}}">
+            <input type="text" placeholder="Mot clé" class="form-control" name="title" value="{{ $input['title'] ?? ''}}">
+
+        <button class="btn btn-primary btn-sm flex-grow-0">
+
+                <i class="fa fa-search"></i>
+            
+        </button> 
+
+
+        </form>
+    
+    </div>
+
     
     <table class=" table table-striped table-responsive text-wrap">
         <thead>

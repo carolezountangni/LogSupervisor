@@ -7,6 +7,7 @@ use carolezountangni\LogSupervisor\Facades\LogSupervisor;
 use Illuminate\Http\Request;
 use carolezountangni\LogSupervisor\Models\Activity;
 // use App\Http\Controllers\Controller;
+use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
 use Illuminate\Routing\Controller;
 
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +16,30 @@ class LogController extends Controller
 {
 
 
-    public function index()
+    public function index(SearchActivityRequest $request)
     {
+
+        $query = Activity::query()->orderBy('created_at', 'desc');
+        if ($request->validated('created_at')) {
+
+            $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+        }
+
+
+        if ($title = $request->validated('title')) {
+
+            $query  = $query->where('action', 'like', "%{$title}%");
+        }
+        // $properties = Post::paginate(16);
+        return view('log-supervisor::index', [
+            'logs' => $query->paginate(20),
+            'validated' => $request->validated(),
+        ]);
         //
 
-        $logs = Activity::paginate(20);
+        // $logs = Activity::paginate(20);
 
-        return view('log-supervisor::index', compact('logs'));
+        // return view('log-supervisor::index', compact('logs'));
     }
 
 

@@ -37,7 +37,8 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerMiddleware();
+        $this->registerRoutes();
+        // $this->registerMiddleware();
         $this->loadResources();
         $this->defineAssetPublishing();
     }
