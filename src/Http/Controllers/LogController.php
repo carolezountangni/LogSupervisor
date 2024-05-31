@@ -29,18 +29,11 @@ class LogController extends Controller
 
             $query  = $query->where('action', 'like', "%{$title}%");
         }
-        // $properties = Post::paginate(16);
         return view('log-supervisor::index', [
             'logs' => $query->paginate(20),
             'validated' => $request->validated(),
         ]);
-        //
-
-        // $logs = Activity::paginate(20);
-
-        // return view('log-supervisor::index', compact('logs'));
     }
-
 
     /**
      */
@@ -64,12 +57,25 @@ class LogController extends Controller
 
     public function logs(string $id)
     {
-        $activities = Activity::where('user_id', $id)->paginate(20);
+
+        $query = Activity::query()->where('user_id', $id)->orderBy('created_at', 'desc');
+        // $activities = Activity::where('user_id', $id)->paginate(20);
         $utilisateur = User::findOrFail($id);
 
+        if ($request->validated('created_at')) {
+
+            $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+        }
+
+
+        if ($title = $request->validated('title')) {
+
+            $query  = $query->where('action', 'like', "%{$title}%");
+        }
 
         return view('log-supervisor::index', [
-            'logs' => $activities,
+            'logs' => $query->paginate(20),
+            'validated' => $request->validated(),
             'utilisateur' => $utilisateur
 
         ]);
