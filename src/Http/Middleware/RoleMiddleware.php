@@ -6,16 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class RoleMiddleware
 {
     public function handle($request, Closure $next)
     {
-        // Vérifier si l'utilisateur est authentifié
-        // if (!Auth::check()) {
-        //     // Rediriger vers la page de connexion
-        //     return redirect()->route('login');
-        // }
+
+        // Vérifiez si l'utilisateur est connecté
+        if (!Auth()->check()) {
+            // Utilisateur non connecté, afficher un message flash et rediriger
+            Session::flash('message', 'Vous devez être connecté pour accéder à cette fonctionnalité.');
+            return redirect()->route('login');
+        }
 
         // Obtenir le rôle défini dans le fichier de configuration du package
         $allowedRole = Config::get('log-supervisor.role');
