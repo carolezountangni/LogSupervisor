@@ -22,7 +22,7 @@ class LogController extends Controller
         if ($request->validated('created_at')) {
 
             // $query  = $query->where('created_at', '<=', $request->validated('created_at'));
-            $query = $query->where('created_at', '<=', $request->validated()['created_at']);
+            $query = $query->where('created_at', '=', $request->validated()['created_at']);
             // $query = $query->whereDate('created_at', $request->validated()['created_at']);
         }
 
@@ -50,14 +50,6 @@ class LogController extends Controller
     public function show($id)
     {
         $activity = Activity::findOrFail($id);
-        $data = [
-            // 'version' => LogSupervisor::version(),
-            'app_name' => config('app.name'),
-            'path' => config('log-supervisor.route_path'),
-            'back_to_system_url' => config('log-supervisor.back_to_system_url'),
-            'back_to_system_label' => config('log-supervisor.back_to_system_label'),
-
-        ];
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
 
@@ -74,7 +66,7 @@ class LogController extends Controller
 
         if ($request->validated('created_at')) {
 
-            $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+            $query  = $query->where('created_at', '=', $request->validated('created_at'));
         }
 
 

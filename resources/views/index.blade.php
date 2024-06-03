@@ -10,19 +10,11 @@
     <div class="bg-ligh p-5 mb-1 text-center">
         <form action="" method="get" class="container d-flex gap-2">
 
-            <div class="form-group">
-                <label for="created_at">Date :</label>
                 <input type="text" name="created_at" id="created_at" class="form-control" placeholder="JJ/MM/AAAA" value="{{ $input['created_at'] ?? ''}}">
-                
-            </div>
-
-
-               <div class="form-group">
-                    <label for="title">Mot clé:</label>
-                    <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
-                    
-              </div>
-            <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class="fa fa-search"></i>Rechercher</button>
+            
+                <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
+        
+            <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class=" fa fa-search-minus"></i>Rechercher</button>
 
         </form>
     </div>
