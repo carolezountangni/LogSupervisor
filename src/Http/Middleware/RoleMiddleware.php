@@ -13,32 +13,31 @@ class RoleMiddleware
     public function handle($request, Closure $next)
     {
 
-        // Vérifiez si l'utilisateur est connecté
-        if (!Auth()->check()) {
-            // Utilisateur non connecté, passer une variable à la vue pour indiquer le message d'erreur
-            $errorMessage = 'Vous devez être connecté pour accéder à cette fonctionnalité.';
-            return redirect()->route('login')->with('error', $errorMessage);
+
+
+        if (Auth::check()) {
+            // L'utilisateur est connecté
+            // Obtenir le rôle défini dans le fichier de configuration du package
+            $allowedRole = Config::get('log-supervisor.role');
+
+            // Vérifier si le rôle autorisé est défini dans la configuration
+            if (!$allowedRole) {
+                // Si le rôle autorisé n'est pas défini, retourner une réponse d'erreur appropriée
+                return response()->json(['error' => 'Role non défini dans la configuration.'], 500);
+            }
+
+            // Vérifier si l'utilisateur a le rôle autorisé
+            $userRole = Auth::user()->role;
+
+            if (!$userRole || $userRole !== $allowedRole) {
+                // Si l'utilisateur n'a pas le rôle autorisé, retourner une réponse d'erreur appropriée
+                return response()->json(['error' => 'Accès non autorisé.'], 403);
+            }
+
+            // L'utilisateur a le rôle autorisé, continuer la requête
+            return $next($request);
+        } else {
+            abort(404, "Vous devez être connecté pour accéder à cette fonctionnalité.");
         }
-
-
-        // Obtenir le rôle défini dans le fichier de configuration du package
-        $allowedRole = Config::get('log-supervisor.role');
-
-        // Vérifier si le rôle autorisé est défini dans la configuration
-        if (!$allowedRole) {
-            // Si le rôle autorisé n'est pas défini, retourner une réponse d'erreur appropriée
-            return response()->json(['error' => 'Role non défini dans la configuration.'], 500);
-        }
-
-        // Vérifier si l'utilisateur a le rôle autorisé
-        $userRole = Auth::user()->role;
-
-        if (!$userRole || $userRole !== $allowedRole) {
-            // Si l'utilisateur n'a pas le rôle autorisé, retourner une réponse d'erreur appropriée
-            return response()->json(['error' => 'Accès non autorisé.'], 403);
-        }
-
-        // L'utilisateur a le rôle autorisé, continuer la requête
-        return $next($request);
     }
 }
