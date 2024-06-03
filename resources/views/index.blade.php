@@ -10,7 +10,7 @@
     <div class="bg-ligh p-5 mb-1 text-center">
         <form action="" method="get" class="container d-flex gap-2">
 
-                <input type="text" name="created_at" id="created_at" class="form-control" placeholder="JJ/MM/AAAA" value="{{ $input['created_at'] ?? ''}}">
+                <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? ''}}">
             
                 <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
         

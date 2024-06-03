@@ -24,7 +24,7 @@ class SearchActivityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'created_at' => ['nullable', 'date_format:d/m/Y'],
+            'created_at' => ['nullable', 'date'],
             'title' => ['nullable', 'string', 'max:255'],
         ];
     }
