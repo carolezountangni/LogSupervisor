@@ -41,19 +41,4 @@ class SearchActivityRequest extends FormRequest
             'title.max' => 'Le titre ne doit pas dépasser :max caractères.',
         ];
     }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        // Formatage de la date pour correspondre au format de la BDD
-        if ($this->has('created_at')) {
-            $this->merge([
-                'created_at' => \Carbon\Carbon::createFromFormat('d/m/Y', $this->created_at)->format('Y-m-d'),
-            ]);
-        }
-    }
 }
