@@ -22,8 +22,8 @@ class LogController extends Controller
         if ($request->validated('created_at')) {
 
             // $query  = $query->where('created_at', '<=', $request->validated('created_at'));
-            // $query = $query->where('created_at', '<=', $request->validated()['created_at']);
-            $query = $query->whereDate('created_at', $request->validated()['created_at']);
+            $query = $query->where('created_at', '<=', $request->validated()['created_at']);
+            // $query = $query->whereDate('created_at', $request->validated()['created_at']);
         }
 
 
@@ -34,8 +34,6 @@ class LogController extends Controller
 
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
-        // Obtenir l'objet Validator
-        // $validator = $request->validator();
         // return redirect()->back()->withErrors($validator);
 
         return view('log-supervisor::index', [
@@ -45,14 +43,6 @@ class LogController extends Controller
             'backLabel' => $backLabel,
 
         ]);
-
-
-        // return redirect()->back()->withErrors($validator)->with([
-        //     'logs' => $query->paginate(20),
-        //     'validated' => $request->validated(),
-        //     'backUrl' => $backUrl,
-        //     'backLabel' => $backLabel,
-        // ]);
     }
 
     /**
