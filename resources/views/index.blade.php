@@ -13,18 +13,14 @@
             <div class="form-group">
                 <label for="created_at">Date :</label>
                 <input type="text" name="created_at" id="created_at" class="form-control" placeholder="JJ/MM/AAAA" value="{{ $input['created_at'] ?? ''}}">
-                {{-- @error('created_at')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror --}}
+                
             </div>
 
 
                <div class="form-group">
                     <label for="title">Mot clé:</label>
                     <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
-                    {{-- @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror --}}
+                    
               </div>
             <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class="fa fa-search"></i>Rechercher</button>
 
