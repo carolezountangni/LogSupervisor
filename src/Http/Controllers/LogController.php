@@ -21,8 +21,7 @@ class LogController extends Controller
         $query = Activity::query()->orderBy('created_at', 'desc');
         if ($request->validated('created_at')) {
 
-            // $query = $query->where('created_at', '<=', $request->validated()['created_at']);
-            $query  = $query->where('created_at', 'like', "%{$created_at}%");
+            $query = $query->where('created_at', '<=', $request->validated()['created_at']);
         }
 
 
