@@ -14,7 +14,7 @@
             
                 <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
         
-            <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class=" fa fa-search-minus"></i>Rechercher</button>
+            <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class=" fa fa-search"></i>Rechercher</button>
 
         </form>
     </div>
