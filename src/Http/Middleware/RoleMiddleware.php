@@ -12,10 +12,10 @@ class RoleMiddleware
     public function handle($request, Closure $next)
     {
         // Vérifier si l'utilisateur est authentifié
-        if (!Auth::check()) {
-            // Rediriger vers la page de connexion
-            return redirect()->route('login');
-        }
+        // if (!Auth::check()) {
+        //     // Rediriger vers la page de connexion
+        //     return redirect()->route('login');
+        // }
 
         // Obtenir le rôle défini dans le fichier de configuration du package
         $allowedRole = Config::get('log-supervisor.role');
