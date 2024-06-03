@@ -34,12 +34,22 @@ class LogController extends Controller
 
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
-        return view('log-supervisor::index', [
+        // return redirect()->back()->withErrors($validator);
+
+        // return view('log-supervisor::index', [
+        //     'logs' => $query->paginate(20),
+        //     'validated' => $request->validated(),
+        //     'backUrl' => $backUrl,
+        //     'backLabel' => $backLabel,
+
+        // ]);
+
+
+        return redirect()->back()->withErrors($validator)->with([
             'logs' => $query->paginate(20),
             'validated' => $request->validated(),
             'backUrl' => $backUrl,
             'backLabel' => $backLabel,
-
         ]);
     }
 
