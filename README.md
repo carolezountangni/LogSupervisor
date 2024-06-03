@@ -45,12 +45,16 @@ Via Composer
     
 ],
 ```
-### Dans votre fichier app/Http/Kernel.php, ajoutez le  middleware  dans le tableau des middlewares pour les routes :
+### Dans votre fichier app/Http/Kernel.php, ajoutez les  middleware  dans le tableau des middlewares pour les routes comme ci-dessous :
 
 ``` php
+
+ protected $middleware = [
+        // 
+        \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
+    ];
 protected $routeMiddleware = [
        
-        'activity' => \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
         'roleMiddleware' => \carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class,
         
     ];
