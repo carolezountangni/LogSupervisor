@@ -19,20 +19,10 @@ class LogController extends Controller
     {
 
         $query = Activity::query()->orderBy('created_at', 'desc');
+        if ($request->validated('created_at')) {
 
-        // Assurez-vous que created_at existe dans les données validées
-        $validatedData = $request->validated();
-        if (isset($validatedData['created_at'])) {
-            // Utilisez l'opérateur d'égalité pour comparer les dates
-            $query = $query->where('created_at', '=', $validatedData['created_at']);
+            $query = $query->where('created_at', '=', $request->validated()['created_at']);
         }
-
-        // if ($request->validated('created_at')) {
-
-        //     // $query  = $query->where('created_at', '<=', $request->validated('created_at'));
-        //     $query = $query->where('created_at', '<=', $request->validated()['created_at']);
-        //     // $query = $query->whereDate('created_at', $request->validated()['created_at']);
-        // }
 
 
         if ($title = $request->validated('title')) {
@@ -42,7 +32,6 @@ class LogController extends Controller
 
         $backUrl = config('log-supervisor.back_to_system_url');
         $backLabel = config('log-supervisor.back_to_system_label');
-        // return redirect()->back()->withErrors($validator);
 
         return view('log-supervisor::index', [
             'logs' => $query->paginate(20),
@@ -74,7 +63,7 @@ class LogController extends Controller
 
         if ($request->validated('created_at')) {
 
-            $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+            $query  = $query->where('created_at', '=', $request->validated('created_at'));
         }
 
 
