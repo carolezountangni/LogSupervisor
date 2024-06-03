@@ -3,7 +3,6 @@
 namespace carolezountangni\LogSupervisor\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
 class SearchActivityRequest extends FormRequest
 {
@@ -56,15 +55,5 @@ class SearchActivityRequest extends FormRequest
                 'created_at' => \Carbon\Carbon::createFromFormat('d/m/Y', $this->created_at)->format('Y-m-d'),
             ]);
         }
-    }
-
-    /**
-     * Get the validator instance for the request.
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    public function validator(): Validator
-    {
-        return $this->getValidatorInstance();
     }
 }
