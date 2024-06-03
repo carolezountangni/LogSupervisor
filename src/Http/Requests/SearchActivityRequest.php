@@ -8,6 +8,8 @@ class SearchActivityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     *
+     * @return bool
      */
     public function authorize(): bool
     {
@@ -17,15 +19,41 @@ class SearchActivityRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array
      */
     public function rules(): array
     {
         return [
-            'created_at' => ['date', 'nullable'],
-
-            'title' => ['string', 'nullable'],
-
+            'created_at' => ['nullable', 'date_format:d/m/Y'],
+            'title' => ['nullable', 'string', 'max:255'],
         ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'created_at.date_format' => 'Le champ date doit être au format JJ/MM/AAAA.',
+            'title.max' => 'Le titre ne doit pas dépasser :max caractères.',
+        ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        // Formatage de la date pour correspondre au format de la BDD
+        if ($this->has('created_at')) {
+            $this->merge([
+                'created_at' => \Carbon\Carbon::createFromFormat('d/m/Y', $this->created_at)->format('Y-m-d'),
+            ]);
+        }
     }
 }

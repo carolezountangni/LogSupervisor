@@ -10,19 +10,25 @@
     <div class="bg-ligh p-5 mb-1 text-center">
         <form action="" method="get" class="container d-flex gap-2">
 
-        
-            <input type="date" placeholder="Date ajout" class="form-control" name="created_at" value="{{ $input['created_at'] ?? ''}}">
-            <input type="text" placeholder="Mot clé" class="form-control" name="title" value="{{ $input['title'] ?? ''}}">
+            <div class="form-group">
+                <label for="created_at">Date :</label>
+                <input type="text" name="created_at" id="created_at" class="form-control" placeholder="JJ/MM/AAAA" value="{{ $input['created_at'] ?? ''}}">
+                @error('created_at')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <button class="btn btn-primary btn-sm flex-grow-0">
 
-                <i class="fa fa-search"></i>
-            
-        </button> 
-
+               <div class="form-group">
+                    <label for="title">Mot clé:</label>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
+                    @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+              </div>
+            <button type="submit" class="btn btn-primary btn-sm flex-grow-0"><i class="fa fa-search"></i>Rechercher</button>
 
         </form>
-    
     </div>
 
     

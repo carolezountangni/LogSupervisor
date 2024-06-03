@@ -22,7 +22,7 @@
           <a class="nav-link active" aria-current="page" href="{{route('lg.logs.index')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">back app</a>
+          <a class="nav-link" href={{$backUrl}}>{{ $backLabel}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>

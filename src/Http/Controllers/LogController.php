@@ -21,7 +21,9 @@ class LogController extends Controller
         $query = Activity::query()->orderBy('created_at', 'desc');
         if ($request->validated('created_at')) {
 
-            $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+            // $query  = $query->where('created_at', '<=', $request->validated('created_at'));
+            // $query = $query->where('created_at', '<=', $request->validated()['created_at']);
+            $query = $query->whereDate('created_at', $request->validated()['created_at']);
         }
 
 
@@ -29,9 +31,15 @@ class LogController extends Controller
 
             $query  = $query->where('action', 'like', "%{$title}%");
         }
+
+        $backUrl = config('log-supervisor.back_to_system_url');
+        $backLabel = config('log-supervisor.back_to_system_label');
         return view('log-supervisor::index', [
             'logs' => $query->paginate(20),
             'validated' => $request->validated(),
+            'backUrl' => $backUrl,
+            'backLabel' => $backLabel,
+
         ]);
     }
 
@@ -72,11 +80,15 @@ class LogController extends Controller
 
             $query  = $query->where('action', 'like', "%{$title}%");
         }
+        $backUrl = config('log-supervisor.back_to_system_url');
+        $backLabel = config('log-supervisor.back_to_system_label');
 
         return view('log-supervisor::index', [
             'logs' => $query->paginate(20),
             'validated' => $request->validated(),
-            'utilisateur' => $utilisateur
+            'utilisateur' => $utilisateur,
+            'backUrl' => $backUrl,
+            'backLabel' => $backLabel,
 
         ]);
     }
