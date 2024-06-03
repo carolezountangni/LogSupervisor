@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Routing\RouteName;
 
 class RoleMiddleware
 {
@@ -22,16 +23,16 @@ class RoleMiddleware
 
         // Vérifier si le rôle autorisé est défini dans la configuration
         if (!$allowedRole) {
-            // Si le rôle autorisé n'est pas défini, retourner une réponse d'erreur appropriée
-            return response()->json(['error' => 'Role non défini dans la configuration.'], 500);
+            // Si le rôle autorisé n'est pas défini, retourner une erreur 500
+            return abort(500, 'Role non défini dans la configuration.');
         }
 
         // Vérifier si l'utilisateur a le rôle autorisé
         $userRole = Auth::user()->role;
 
         if (!$userRole || $userRole !== $allowedRole) {
-            // Si l'utilisateur n'a pas le rôle autorisé, retourner une réponse d'erreur appropriée
-            return response()->json(['error' => 'Accès non autorisé.'], 403);
+            // Si l'utilisateur n'a pas le rôle autorisé, retourner une erreur 403
+            return abort(403, 'Accès non autorisé.');
         }
 
         // L'utilisateur a le rôle autorisé, continuer la requête
