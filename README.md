@@ -45,7 +45,7 @@ Via Composer
     
 ],
 ```
-### Dans votre fichier app/Http/Kernel.php, ajoutez les  middleware  dans le tableau des middlewares pour les routes comme ci-dessous :
+### Dans votre fichier app/Http/Kernel.php, ajoutez le middleware comme ceci :
 
 ``` php
 
@@ -53,11 +53,7 @@ Via Composer
         // 
         \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
     ];
-protected $routeMiddleware = [
-       
-        'roleMiddleware' => \carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class,
-        
-    ];
+
 ```
 ### Publier les migrations et le fichier de configuration
 
