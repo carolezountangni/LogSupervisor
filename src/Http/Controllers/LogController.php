@@ -2,19 +2,26 @@
 
 namespace carolezountangni\LogSupervisor\Http\Controllers;
 
-use App\Http\Requests\SearchActivityRequest as RequestsSearchActivityRequest;
 use App\Models\User;
-use carolezountangni\LogSupervisor\Facades\LogSupervisor;
-use Illuminate\Http\Request;
-use carolezountangni\LogSupervisor\Models\Activity;
+// use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 // use App\Http\Controllers\Controller;
-use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
-use Illuminate\Routing\Controller;
-
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Routing\Controller;
+use carolezountangni\LogSupervisor\Models\Activity;
+use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
+use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
 
 class LogController extends Controller
 {
+
+    public function __construct()
+    {
+        // Appliquer le middleware à toutes les méthodes du contrôleur
+        $this->middleware(RoleMiddleware::class);
+    }
+
+
     public function index(SearchActivityRequest $request)
     {
 
