@@ -5,20 +5,44 @@ namespace carolezountangni\LogSupervisor\Http\Controllers;
 use App\Models\User;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Routing\Controller;
 use carolezountangni\LogSupervisor\Models\Activity;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
+use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
+
 
 class LogController extends Controller
 {
 
-    public function __construct()
+    public function __construct(AuthenticationInterface $auth)
     {
         // Appliquer le middleware à toutes les méthodes du contrôleur
         $this->middleware(RoleMiddleware::class);
+        $this->auth = $auth;
+    }
+
+    public function login(Request $request)
+    {
+        // Tenter de connecter l'utilisateur en utilisant votre implémentation personnalisée
+        if ($this->auth->attemptLogin($request->only('email', 'password'))) {
+            // L'utilisateur est connecté
+        } else {
+            // Échec de la connexion
+        }
+    }
+
+    public function logout()
+    {
+        // Déconnecter l'utilisateur en utilisant votre implémentation personnalisée
+        $this->auth->logout();
+    }
+
+    public function currentUser()
+    {
+        // Récupérer l'utilisateur connecté en utilisant votre implémentation personnalisée
+        $user = $this->auth->user();
     }
 
 

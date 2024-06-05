@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use Illuminate\Auth\Middleware\Authenticate;
+use carolezountangni\LogSupervisor\CustomAuthentication;
+use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
 
 class LogSupervisorServiceProvider extends ServiceProvider
 {
@@ -38,9 +40,18 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
+        $this->authUser();
         // $this->registerMiddleware();
         $this->loadResources();
         $this->defineAssetPublishing();
+    }
+
+    public function authUser()
+    {
+
+        $this->app->singleton(AuthenticationInterface::class, function ($app) {
+            return new CustomAuthentication($app->make(\Illuminate\Contracts\Auth\Factory::class));
+        });
     }
 
     public function registerMiddleware()
