@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use Illuminate\Auth\Middleware\Authenticate;
 use carolezountangni\LogSupervisor\CustomAuthentication;
-use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
+use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
 
 class LogSupervisorServiceProvider extends ServiceProvider
 {

@@ -2,7 +2,7 @@
 
 namespace carolezountangni\LogSupervisor;
 
-use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
+use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Response;

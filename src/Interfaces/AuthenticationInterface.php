@@ -1,6 +1,6 @@
 <?php
 
-namespace carolezounatngni\LogSupervisor\Interfaces;
+namespace carolezountangni\LogSupervisor\Interfaces;
 
 interface AuthenticationInterface
 {
