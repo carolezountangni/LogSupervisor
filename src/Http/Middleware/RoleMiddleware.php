@@ -16,13 +16,12 @@ class RoleMiddleware
     public function __construct(CustomAuthentication $customAuth)
     {
         $this->customAuth = $customAuth;
-        $this->allowedRole = Config::get('log-supervisor.role');
     }
 
     public function handle(Request $request, Closure $next)
     {
         // Vérifier si l'utilisateur a le rôle spécifié
-        if (!$this->customAuth->hasRole($this->allowedRole)) {
+        if (!$this->customAuth->hasRole()) {
             // Si l'utilisateur n'a pas le rôle, retourner une réponse d'erreur
             abort(403, "Accès refusé. Vous n'avez pas le bon rôle.");
         }

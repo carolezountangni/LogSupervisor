@@ -31,10 +31,36 @@ class CustomAuthentication implements AuthenticationInterface
         return $this->auth->user();
     }
 
-    public function hasRole($role)
+    // public function hasRole()
+    // {
+    //     $user = $this->auth->user();
+
+    //     if (!$user) {
+    //         return false;
+    //     }
+
+    //     // Obtenir le rôle autorisé à partir de la configuration
+    //     $allowedRole = Config::get('log-supervisor.role');
+
+    //     // Si le rôle autorisé n'est pas défini, retourner une erreur 404
+    //     if (!$allowedRole) {
+    //         abort(404, "Role non défini dans la configuration.");
+    //     }
+
+    //     // Vérifiez si l'utilisateur a le rôle spécifié
+    //     if ($user->role === $allowedRole) {
+    //         return true;
+    //     }
+
+    //     // Si l'utilisateur n'a pas le rôle spécifié, retourner une erreur 404
+    //     abort(404, "Accès non autorisé.");
+    // }
+
+    public function hasRole()
     {
         $user = $this->auth->user();
 
+        // Vérifier si l'utilisateur est connecté
         if (!$user) {
             return false;
         }
@@ -42,17 +68,12 @@ class CustomAuthentication implements AuthenticationInterface
         // Obtenir le rôle autorisé à partir de la configuration
         $allowedRole = Config::get('log-supervisor.role');
 
-        // Si le rôle autorisé n'est pas défini, retourner une erreur 404
+        // Vérifier si le rôle autorisé est défini dans la configuration
         if (!$allowedRole) {
-            abort(404, "Role non défini dans la configuration.");
+            abort(403, "Rôle non défini dans la configuration.");
         }
 
-        // Vérifiez si l'utilisateur a le rôle spécifié
-        if ($user->role === $allowedRole) {
-            return true;
-        }
-
-        // Si l'utilisateur n'a pas le rôle spécifié, retourner une erreur 404
-        abort(404, "Accès non autorisé.");
+        // Vérifier si l'utilisateur a le rôle spécifié
+        return $user->role === $allowedRole;
     }
 }
