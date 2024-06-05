@@ -39,7 +39,10 @@ return [
     |
     */
 
-    'route_path' => 'log-supervisor',
+    'route_path' => env('PACKAGE_ROUTE_PATH', 'log-supervisor'),
+    // 'middlewares' => ['auth', 'my_custom_middleware'],
+    'prefix' => env('MY_PACKAGE_PREFIX', 'mon-package'),
+    'middlewares' => explode(',', env('MY_PACKAGE_MIDDLEWARES', 'auth')),
 
     /*
     |--------------------------------------------------------------------------
@@ -75,7 +78,7 @@ return [
     |
     */
 
-    'middlewares' => [
+    'middleware' => [
 
         \carolezountangni\LogSupervisor\Http\Middleware\Activity::class,
         \carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware::class,

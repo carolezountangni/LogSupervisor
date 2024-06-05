@@ -9,6 +9,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 use carolezountangni\LogSupervisor\CustomAuthentication;
 use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
 
+
 class LogSupervisorServiceProvider extends ServiceProvider
 {
     /**
@@ -40,7 +41,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
-        $this->authUser();
+        // $this->authUser();
         // $this->registerMiddleware();
         $this->loadResources();
         $this->defineAssetPublishing();
@@ -97,6 +98,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     protected function registerRoutes()
     {
+
         try {
             Route::group($this->routeConfiguration(), function () {
                 $this->loadRoutesFrom(self::basePath('routes/web.php'));
@@ -115,7 +117,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function routeConfiguration()
     {
         return [
-            'prefix' => 'log-supervisor',
+            // 'prefix' => 'log-supervisor',
             // 'middleware' => [RoleMiddleware::class, Authenticate::class],
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
