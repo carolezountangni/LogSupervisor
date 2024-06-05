@@ -119,7 +119,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
         return [
             'prefix' => Config('log-supervisor.prefix'),
             // 'middleware' => [RoleMiddleware::class, Authenticate::class],
-            'middleware' => Config('log-supervisor.middlewares'),
+            // 'middleware' => Config('log-supervisor.middlewares'),
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
