@@ -73,7 +73,11 @@ class CustomAuthentication implements AuthenticationInterface
             abort(403, "Rôle non défini dans la configuration.");
         }
 
+        // Convertir les deux valeurs au même format avant de les comparer
+        $userRoleFormatted = strtolower($user->role);
+        $allowedRoleFormatted = strtolower($allowedRole);
+
         // Vérifier si l'utilisateur a le rôle spécifié
-        return $user->role == $allowedRole;
+        return $userRoleFormatted === $allowedRoleFormatted;
     }
 }
