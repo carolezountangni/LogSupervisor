@@ -21,9 +21,10 @@ class RoleMiddleware
 
     public function handle($request, Closure $next)
     {
+        $role = 'ROLE_ADMIN';
 
         // if (Auth::check()) {
-        if ($this->auth->hasRole()) {
+        if ($this->auth->hasRole($role)) {
 
             // // L'utilisateur est connecté
             // // Obtenir le rôle défini dans le fichier de configuration du package
