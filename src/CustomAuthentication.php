@@ -74,6 +74,6 @@ class CustomAuthentication implements AuthenticationInterface
         }
 
         // Vérifier si l'utilisateur a le rôle spécifié
-        return $user->role === $allowedRole;
+        return $user->role == $allowedRole;
     }
 }
