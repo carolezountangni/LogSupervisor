@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use carolezountangni\LogSupervisor\Http\Controllers\LogController;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 
-Route::prefix(Config('log-supervisor.prefix'))->middleware(config('log-supervisor.middlewares'))->group(function () {
+// Route::prefix(Config('log-supervisor.prefix'))->middleware(config('log-supervisor.middlewares'))->group(function () {
 
 
-    Route::get('/', 'LogController@index')->name('lg.logs.index');
-    // Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
-    Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+Route::get('/', 'LogController@index')->name('lg.logs.index');
+// Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
+Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
 
-    Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
-});
+Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
+// });
 
 
 // Route::get('/', [LogController::class, 'index'])->name('lg.logs.index')->middleware('');

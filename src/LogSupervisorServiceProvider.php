@@ -4,11 +4,11 @@ namespace carolezountangni\LogSupervisor;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Config;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use Illuminate\Auth\Middleware\Authenticate;
 use carolezountangni\LogSupervisor\CustomAuthentication;
 use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
-
 
 class LogSupervisorServiceProvider extends ServiceProvider
 {
@@ -117,8 +117,9 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function routeConfiguration()
     {
         return [
-            // 'prefix' => 'log-supervisor',
+            'prefix' => Config('log-supervisor.prefix'),
             // 'middleware' => [RoleMiddleware::class, Authenticate::class],
+            'middleware' => Config('log-supervisor.middlewares'),
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
