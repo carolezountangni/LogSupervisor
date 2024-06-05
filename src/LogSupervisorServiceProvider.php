@@ -41,7 +41,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
-        // $this->authUser();
+        $this->authUser();
         // $this->registerMiddleware();
         $this->loadResources();
         $this->defineAssetPublishing();
@@ -119,7 +119,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
         return [
             'prefix' => Config('log-supervisor.prefix'),
             // 'middleware' => [RoleMiddleware::class, Authenticate::class],
-            'middleware' => Config('log-supervisor.middlewares'),
+            // 'middleware' => Config('log-supervisor.middlewares'),
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
         ];
     }
