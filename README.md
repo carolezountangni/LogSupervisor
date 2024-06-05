@@ -67,8 +67,14 @@ php artisan vendor:publish --tag=public-ls
 ## Affichage des logs au niveau d'une liste d'utilisateurs que vous avez créée par le biais d'un bouton.
 ### Votre table d'utilisateur dit s'appeler "User" obligatoirement
 
-``` php
+``` html
 <a href="{{ route('lg.logs.logs', $user->id) }}" class=" btn btn-warning m-1">Logs</a>
+```
+## Gérer les middleware et le prefix des routes du package.
+
+```php
+MY_PACKAGE_PREFIX=prefix-personnalise
+MY_PACKAGE_MIDDLEWARES=middleware1,middleware2
 ```
 ### Accès aux vues du package 
 
