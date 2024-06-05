@@ -44,7 +44,7 @@ class CustomAuthentication implements AuthenticationInterface
 
         // Si le rôle autorisé n'est pas défini, retourner une erreur 404
         if (!$allowedRole) {
-            return new Response('Role non défini dans la configuration.', 404);
+            abort(404, "Role non défini dans la configuration.");
         }
 
         // Vérifiez si l'utilisateur a le rôle spécifié
@@ -53,6 +53,6 @@ class CustomAuthentication implements AuthenticationInterface
         }
 
         // Si l'utilisateur n'a pas le rôle spécifié, retourner une erreur 404
-        return new Response('Accès non autorisé.', 404);
+        abort(404, "Accès non autorisé.");
     }
 }
