@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use carolezountangni\LogSupervisor\Models\Activity;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
-use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
-
+use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
 
 class LogController extends Controller
 {

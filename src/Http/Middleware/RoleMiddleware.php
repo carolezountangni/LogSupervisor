@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use carolezounatngni\LogSupervisor\Interfaces\AuthenticationInterface;
+use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
 
 class RoleMiddleware
 {
