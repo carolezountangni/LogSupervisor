@@ -15,12 +15,12 @@ use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
 class LogController extends Controller
 {
 
-    public function __construct(AuthenticationInterface $auth)
-    {
-        // Appliquer le middleware à toutes les méthodes du contrôleur
-        $this->middleware(RoleMiddleware::class);
-        $this->auth = $auth;
-    }
+    // public function __construct(AuthenticationInterface $auth)
+    // {
+    //     // Appliquer le middleware à toutes les méthodes du contrôleur
+    //     $this->middleware(RoleMiddleware::class);
+    //     $this->auth = $auth;
+    // }
 
     // public function login(Request $request)
     // {
