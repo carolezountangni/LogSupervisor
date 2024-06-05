@@ -50,14 +50,13 @@ class Activity
         $ip_address = $request->ip();
         $attributes = $request->all();
         return [
-            'action' => $request->route()->action['uses'],
+            'action' => isset($request->route()->action['uses']) ? $request->route()->action['uses'] : null,
             'description' => NULL,
             'role' => $role,
             'group' => NULL,
             'user_agent' => $request->header('User-Agent'),
             // 'route' => $request->route()->action['as'],
             'route' => isset($request->route()->action['as'])  ? $request->route()->action['as'] : null,
-
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
             'locale' => $request->server('HTTP_ACCEPT_LANGUAGE'),

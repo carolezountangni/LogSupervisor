@@ -80,7 +80,7 @@ MY_PACKAGE_MIDDLEWARES=middleware1,middleware2
 
 Once the installation is complete, you will be able to access **Log Supervisor** directly in your browser.
 
-By default, the application is available at: `{APP_URL}/log-supervisor`.
+By default, the application is available at: `{APP_URL}/log-supervisor` or  `{APP_URL}/MY_PACKAGE_PREFIX`.
 
 (for example: `https://my-app.test/log-supervisor`)
 ## Change log
