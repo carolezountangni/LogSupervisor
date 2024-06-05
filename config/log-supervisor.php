@@ -41,7 +41,7 @@ return [
 
     'route_path' => env('PACKAGE_ROUTE_PATH', 'log-supervisor'),
     // 'middlewares' => ['auth', 'my_custom_middleware'],
-    'prefix' => env('MY_PACKAGE_PREFIX', 'mon-package'),
+    'prefix' => env('MY_PACKAGE_PREFIX', 'log-supervisor'),
     'middlewares' => explode(',', env('MY_PACKAGE_MIDDLEWARES', 'auth')),
 
     /*
