@@ -91,7 +91,8 @@ class LogSupervisorServiceProvider extends ServiceProvider
         }
         try {
             // $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
-            $this->loadMigrationsFrom(self::basePath('database/migrations/log-supervisor'));
+            // $this->loadMigrationsFrom(self::basePath('database/migrations/log-supervisor'));
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         } catch (\Throwable $e) {
             // Handle view loading error
 
