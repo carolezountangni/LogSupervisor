@@ -58,7 +58,6 @@ Via Composer
 ### Publier les migrations et le fichier de configuration
 
 ``` php
-php artisan vendor:publish --tag=migrations-ls
 php artisan migrate
 php artisan vendor:publish --tag=config-ls
 php artisan vendor:publish --tag=public-ls

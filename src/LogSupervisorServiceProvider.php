@@ -89,6 +89,12 @@ class LogSupervisorServiceProvider extends ServiceProvider
             // Handle view loading error
             \Log::error('Failed to load views: ' . $e->getMessage());
         }
+        try {
+            $this->loadMigrationsFrom(self::basePath('database/migrations'));
+        } catch (\Throwable $e) {
+            // Handle view loading error
+            \Log::error('Failed to load migrations: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -135,11 +141,17 @@ class LogSupervisorServiceProvider extends ServiceProvider
             $this->publishes([
                 self::basePath('config/log-supervisor.php') => config_path('log-supervisor.php'),
             ], 'config-ls');
+        } catch (\Throwable $e) {
+            // Handle asset publishing error
+            \Log::error('Failed to publish config file: ' . $e->getMessage());
+        }
 
-            $this->publishes([
-                self::basePath('database/migrations') => database_path('migrations'),
-            ], 'migrations-ls');
+        // $this->publishes([
+        //     self::basePath('database/migrations') => database_path('migrations'),
+        // ], 'migrations-ls');
+        // commande : php artisan vendor:publish --tag=migrations-ls
 
+        try {
             $this->publishes([
                 self::basePath('public') => public_path('vendor/log-supervisor'),
             ], 'public-ls');

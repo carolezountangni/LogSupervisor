@@ -10,9 +10,7 @@ use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 
 
 Route::get('/', 'LogController@index')->name('lg.logs.index');
-// Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
 Route::get('/show/{id}', 'LogController@show')->name('lg.logs.show');
-
 Route::get('/utilisateurs/{id}/activities', 'LogController@logs')->name('lg.logs.logs');
 // });
 
