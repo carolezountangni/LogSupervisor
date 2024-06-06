@@ -89,13 +89,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
             // Handle view loading error
             \Log::error('Failed to load views: ' . $e->getMessage());
         }
-        try {
-            $this->loadMigrationsFrom(self::basePath('database/migrations'));
-        } catch (\Throwable $e) {
-            // Handle view loading error
-
-            \Log::error('Failed to load migrations: ' . $e->getMessage());
-        }
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/log-supervisor');
     }
 
     /**
