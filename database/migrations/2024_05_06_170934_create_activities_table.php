@@ -13,7 +13,9 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        $tableName = config('log-supervisor.activities_table'); // Récupérer le nom de la table depuis la configuration
+
+        Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->string('action')->nullable();
             $table->longText('description')->nullable();
@@ -32,9 +34,6 @@ class CreateActivitiesTable extends Migration
             $table->string('ip_address', 64)->nullable();
             $table->json('attributes')->nullable();
 
-
-
-
             $table->timestamps();
         });
     }
@@ -46,6 +45,8 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        $tableName = config('log-supervisor.activities_table'); // Récupérer le nom de la table depuis la configuration
+
+        Schema::dropIfExists($tableName);
     }
 }

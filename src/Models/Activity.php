@@ -2,7 +2,6 @@
 
 namespace carolezountangni\LogSupervisor\Models;
 
-use App\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
@@ -12,6 +11,8 @@ use Illuminate\Notifications\Notifiable;
 class Activity extends Model
 {
     use HasFactory;
+
+    protected $table; // Ajout de la propriété $table pour spécifier le nom de la table
 
     protected $fillable = [
         'action', // le type ,la méthode du controlleur
@@ -30,15 +31,19 @@ class Activity extends Model
         // 'device', //moteur de rendu de pages Web 
         'ip_address', // l'adresse ip de l'utilisateur 
         'attributes',
-
-
     ];
+
     protected $casts = [
         'attributes'  => 'json', //les attributs de la requête
-
         // 'attributes'  => Json::class, //les attributs de la requête
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('log-supervisor.activities_table'); // Définition du nom de la table depuis la configuration
+    }
 
     public function user()
     {

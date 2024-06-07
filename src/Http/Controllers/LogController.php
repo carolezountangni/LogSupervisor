@@ -20,6 +20,8 @@ class LogController extends Controller
     //     // Appliquer le middleware à toutes les méthodes du contrôleur
     //     $this->middleware(RoleMiddleware::class);
     //     $this->auth = $auth;
+    //  $this->tableName = config('log-supervisor.activities_table'); // Récupérer le nom de la table depuis la configuration
+
     // }
 
     // public function login(Request $request)

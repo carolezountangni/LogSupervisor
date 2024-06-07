@@ -4,6 +4,7 @@
 return [
     'key' => 'log-supervisor',
     'role' => 'ROLE_ADMIN',
+    'activities_table' => 'activities', // Nom de la table par défaut dans la BDD
 
 
     /*
