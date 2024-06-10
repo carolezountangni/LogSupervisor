@@ -83,20 +83,11 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     protected function loadResources()
     {
-        try {
-            $this->loadViewsFrom(self::basePath('resources/views'), 'log-supervisor');
-        } catch (\Throwable $e) {
-            // Handle view loading error
-            \Log::error('Failed to load views: ' . $e->getMessage());
-        }
-        // try {
 
-        //     $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        // } catch (\Throwable $e) {
-        //     // Handle view loading error
+        $this->loadViewsFrom(self::basePath('resources/views'), 'log-supervisor');
 
-        //     \Log::error('Failed to load migrations: ' . $e->getMessage());
-        // }
+        //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
     }
 
     /**
@@ -107,14 +98,10 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
 
-        try {
-            Route::group($this->routeConfiguration(), function () {
-                $this->loadRoutesFrom(self::basePath('routes/web.php'));
-            });
-        } catch (\Throwable $e) {
-            // Handle route registration error
-            \Log::error('Failed to register routes: ' . $e->getMessage());
-        }
+
+        Route::group($this->routeConfiguration(), function () {
+            $this->loadRoutesFrom(self::basePath('routes/web.php'));
+        });
     }
 
     /**
@@ -125,7 +112,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function routeConfiguration()
     {
         return [
-            'prefix' => Config('log-supervisor.prefix'),
+            'prefix' => config('log-supervisor.prefix'),
             // 'middleware' => [RoleMiddleware::class, Authenticate::class],
             // 'middleware' => Config('log-supervisor.middlewares'),
             'namespace' => 'carolezountangni\LogSupervisor\Http\Controllers',
@@ -139,26 +126,19 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     protected function defineAssetPublishing()
     {
-        try {
-            $this->publishes([
-                self::basePath('config/log-supervisor.php') => config_path('log-supervisor.php'),
-            ], 'config-ls');
-        } catch (\Throwable $e) {
-            // Handle asset publishing error
-            \Log::error('Failed to publish config file: ' . $e->getMessage());
-        }
+
+        $this->publishes([
+            self::basePath('config/log-supervisor.php') => config_path('log-supervisor.php'),
+        ], 'config-ls');
+
 
         $this->publishes([
             self::basePath('database/migrations') => database_path('migrations'),
         ], 'migrations-ls');
 
-        try {
-            $this->publishes([
-                self::basePath('public') => public_path('vendor/log-supervisor'),
-            ], 'public-ls');
-        } catch (\Throwable $e) {
-            // Handle asset publishing error
-            \Log::error('Failed to publish assets: ' . $e->getMessage());
-        }
+
+        $this->publishes([
+            self::basePath('public') => public_path('vendor/log-supervisor'),
+        ], 'public-ls');
     }
 }

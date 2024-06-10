@@ -59,8 +59,8 @@ Via Composer
 
 ``` php
 php artisan vendor:publish --tag=migrations-ls
-php artisan migrate
 php artisan vendor:publish --tag=config-ls
+php artisan migrate
 php artisan vendor:publish --tag=public-ls
 ```
 
