@@ -31,7 +31,7 @@ class Activity
         if (!$activity) {
             return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
         }
-        return $next($request);
+        return $response;
     }
 
     /**
@@ -42,9 +42,11 @@ class Activity
      */
     public function makeRequest(Request $request)
     {
+
         $user = Auth::user();
-        $role = $user->role ?? null;
-        $id = $user->id ?? null;
+        $role = $user ? $user->role : null;
+        $id = $user ? $user->id : null;
+
 
         $ipAddress = $request->ip();
         $attributes = $request->all();
