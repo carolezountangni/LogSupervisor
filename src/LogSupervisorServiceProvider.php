@@ -9,6 +9,7 @@ use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use Illuminate\Auth\Middleware\Authenticate;
 use carolezountangni\LogSupervisor\CustomAuthentication;
 use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
+use Illuminate\Support\Facades\Log;
 
 class LogSupervisorServiceProvider extends ServiceProvider
 {
@@ -84,10 +85,13 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function loadResources()
     {
 
-        $this->loadViewsFrom(self::basePath('resources/views'), 'log-supervisor');
-
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
+        try {
+            $this->loadViewsFrom(self::basePath('resources/views'), 'log-supervisor');
+        } catch (\Exception $e) {
+            // Enregistrer l'erreur dans les logs
+            Log::error('Une erreur est survenue lors du chargement des ressources : ' . $e->getMessage());
+        }
     }
 
     /**
@@ -98,10 +102,14 @@ class LogSupervisorServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
 
-
-        Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(self::basePath('routes/web.php'));
-        });
+        try {
+            Route::group($this->routeConfiguration(), function () {
+                $this->loadRoutesFrom(self::basePath('routes/web.php'));
+            });
+        } catch (\Exception $e) {
+            // Enregistrer l'erreur dans les logs
+            Log::error('Une erreur est survenue lors du chargement des routes : ' . $e->getMessage());
+        }
     }
 
     /**
@@ -126,19 +134,28 @@ class LogSupervisorServiceProvider extends ServiceProvider
      */
     protected function defineAssetPublishing()
     {
+        try {
+            $this->publishes([
+                self::basePath('config/log-supervisor.php') => config_path('log-supervisor.php'),
+            ], 'config-ls');
+        } catch (\Exception $e) {
+            Log::error('Une erreur est survenue lors de la publication du fichier de configuration : ' . $e->getMessage());
+        }
 
-        $this->publishes([
-            self::basePath('config/log-supervisor.php') => config_path('log-supervisor.php'),
-        ], 'config-ls');
+        try {
+            $this->publishes([
+                self::basePath('database/migrations') => database_path('migrations'),
+            ], 'migrations-ls');
+        } catch (\Exception $e) {
+            Log::error('Une erreur est survenue lors de la publication des migrations : ' . $e->getMessage());
+        }
 
-
-        $this->publishes([
-            self::basePath('database/migrations') => database_path('migrations'),
-        ], 'migrations-ls');
-
-
-        $this->publishes([
-            self::basePath('public') => public_path('vendor/log-supervisor'),
-        ], 'public-ls');
+        try {
+            $this->publishes([
+                self::basePath('public') => public_path('vendor/log-supervisor'),
+            ], 'public-ls');
+        } catch (\Exception $e) {
+            Log::error('Une erreur est survenue lors de la publication des ressources publiques : ' . $e->getMessage());
+        }
     }
 }
