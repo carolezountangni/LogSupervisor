@@ -31,7 +31,7 @@ class Activity
         if (!$activity) {
             return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
         }
-        return $response;
+        return $next($request);
     }
 
     /**
