@@ -53,13 +53,14 @@ class Activity
 
         // Correction pour obtenir l'action de la route
         $action = $request->route()->getAction();
-        $actionUses = isset($action['uses']) ? $action['uses'] : null;
+        $actionUses = isset($action['uses']) && is_string($action['uses']) ? $action['uses'] : 'Action inconnue';
+
 
         // Correction pour obtenir le nom de la route
         $routeName = $request->route()->getName() ?? null;
 
         return [
-            'action' => isset($request->route()->action['uses']) ? $request->route()->action['uses'] : null,
+            'action' => $actionUses,
             'description' => null,
             'role' => $role,
             'group' => null,
