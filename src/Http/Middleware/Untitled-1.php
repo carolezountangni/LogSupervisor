@@ -26,50 +26,44 @@ class Activity
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        $tostore = $this->makeRequest($request);
+        $tostore = $this->make_request($request);
         $activity = $this->activityRepo->makeStore($tostore);
         if (!$activity) {
-            return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
+            return back()->with('error', 'L\'action a échoué veuillez réessayer !');
         }
         return $response;
     }
 
-    /**
-     * Create a request log array from the given request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function makeRequest(Request $request)
+    public function make_request(Request $request)
     {
-
         $user = Auth::user();
-        $role = $user ? $user->role : null;
-        $id = $user ? $user->id : null;
+        if ($user == null) {
+            $role = null;
+            $id = null;
+        } else {
+            $role = $user->role;
+            $id = $user->id;
+        }
 
-
-        $ipAddress = $request->ip();
+        // $platform = $agent->platform();
+        // $device = $agent->device();
+        $ip_address = $request->ip();
         $attributes = $request->all();
-
-        // Correction pour obtenir l'action de la route
-        $action = $request->route()->getAction();
-        $actionUses = isset($action['uses']) ? $action['uses'] : null;
-
-        // Correction pour obtenir le nom de la route
-        $routeName = $request->route()->getName() ?? null;
-
         return [
             'action' => isset($request->route()->action['uses']) ? $request->route()->action['uses'] : null,
-            'description' => null,
+            'description' => NULL,
             'role' => $role,
-            'group' => null,
+            'group' => NULL,
             'user_agent' => $request->header('User-Agent'),
-            'route' => $routeName,
+            // 'route' => $request->route()->action['as'],
+            'route' => isset($request->route()->action['as'])  ? $request->route()->action['as'] : null,
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
-            'locale' => $request->header('Accept-Language'),
+            'locale' => $request->server('HTTP_ACCEPT_LANGUAGE'),
             'user_id' => $id,
-            'ip_address' => $ipAddress,
+            // 'platform' => $platform,
+            // 'device'   => $device,
+            'ip_address' => $ip_address,
             'attributes' => $attributes
         ];
     }
