@@ -43,31 +43,30 @@ class Activity
     public function makeRequest(Request $request)
     {
         $user = Auth::user();
-        if ($user == null) {
-            $role = null;
-            $id = null;
-        } else {
-            $role = $user->role;
-            $id = $user->id;
-        }
+        $role = $user->role ?? null;
+        $id = $user->id ?? null;
 
-        // $platform = $agent->platform();
-        // $device = $agent->device();
         $ipAddress = $request->ip();
         $attributes = $request->all();
+
+        // Correction pour obtenir l'action de la route
+        $action = $request->route()->getAction();
+        $actionUses = isset($action['uses']) ? $action['uses'] : null;
+
+        // Correction pour obtenir le nom de la route
+        $routeName = $request->route()->getName() ?? null;
+
         return [
-            'action' => $request->route()->action['uses'] ?? null,
+            'action' => $actionUses,
             'description' => null,
             'role' => $role,
             'group' => null,
             'user_agent' => $request->header('User-Agent'),
-            'route' => $request->route()->action['as'] ?? null,
+            'route' => $routeName,
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
-            'locale' => $request->server('HTTP_ACCEPT_LANGUAGE'),
+            'locale' => $request->header('Accept-Language'),
             'user_id' => $id,
-            // 'platform' => $platform,
-            // 'device' => $device,
             'ip_address' => $ipAddress,
             'attributes' => $attributes
         ];
