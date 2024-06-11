@@ -26,15 +26,21 @@ class Activity
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        $tostore = $this->make_request($request);
+        $tostore = $this->makeRequest($request);
         $activity = $this->activityRepo->makeStore($tostore);
         if (!$activity) {
-            return back()->with('error', 'L\'action a échoué veuillez réessayer !');
+            return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
         }
         return $response;
     }
 
-    public function make_request(Request $request)
+    /**
+     * Create a request log array from the given request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function makeRequest(Request $request)
     {
         $user = Auth::user();
         if ($user == null) {
@@ -47,23 +53,22 @@ class Activity
 
         // $platform = $agent->platform();
         // $device = $agent->device();
-        $ip_address = $request->ip();
+        $ipAddress = $request->ip();
         $attributes = $request->all();
         return [
-            'action' => isset($request->route()->action['uses']) ? $request->route()->action['uses'] : null,
-            'description' => NULL,
+            'action' => $request->route()->action['uses'] ?? null,
+            'description' => null,
             'role' => $role,
-            'group' => NULL,
+            'group' => null,
             'user_agent' => $request->header('User-Agent'),
-            // 'route' => $request->route()->action['as'],
-            'route' => isset($request->route()->action['as'])  ? $request->route()->action['as'] : null,
+            'route' => $request->route()->action['as'] ?? null,
             'referrer' => $request->header('referer'),
             'method' => $request->method(),
             'locale' => $request->server('HTTP_ACCEPT_LANGUAGE'),
             'user_id' => $id,
             // 'platform' => $platform,
-            // 'device'   => $device,
-            'ip_address' => $ip_address,
+            // 'device' => $device,
+            'ip_address' => $ipAddress,
             'attributes' => $attributes
         ];
     }
