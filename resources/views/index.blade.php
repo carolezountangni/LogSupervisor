@@ -27,6 +27,7 @@
                 <th class="col-md-2">Rôle</th>
                 <th class="col-md-2">Action</th>
                 <th class="col-md-2">Méthode</th>
+                <th class="col-md-2">Date</th>
                 <th class=""> Actions</th>
             </tr>
         </thead>
@@ -42,10 +43,11 @@
                     <td class="col-md-2">{{ $activity->action}} </td>
                     
                     <td class="col-md-2">{{ $activity->method }}</td>
-        
+                    <td class="col-md-2">{{ $activity->created_at->format('d/m/Y H:i') }}</td>
+
                     <td>
                         <div class="d-flex gap-2 m-100 justify-content-end">
-                            <a href="{{ route('lg.logs.show', $activity->id)}}" class="btn btn-primary">Voir</a>
+                            <a href="{{ route('lg.logs.show', $activity->id)}}" class="btn btn-primary">Consulter</a>
                          
                         </div>
                     </td>
