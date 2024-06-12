@@ -32,8 +32,8 @@
         </div>
     </nav>
 
-    <div class="content container mt-5 pt-3">
-        <div class="page-header mb-4">
+    <div class="content container mt-2 pt-3">
+        <div class="page-header mb-2">
             <h1 class="page-header-title">@yield('title')</h1>
         </div>
         @yield('content')

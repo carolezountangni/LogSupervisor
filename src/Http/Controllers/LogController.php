@@ -11,6 +11,7 @@ use carolezountangni\LogSupervisor\Models\Activity;
 use carolezountangni\LogSupervisor\Http\Middleware\RoleMiddleware;
 use carolezountangni\LogSupervisor\Http\Requests\SearchActivityRequest;
 use carolezountangni\LogSupervisor\Interfaces\AuthenticationInterface;
+use Carbon\Carbon;
 
 class LogController extends Controller
 {
@@ -47,19 +48,45 @@ class LogController extends Controller
     // }
 
 
+    // public function index(SearchActivityRequest $request)
+    // {
+
+    //     $query = Activity::query()->orderBy('created_at', 'desc');
+    //     if ($request->validated('created_at')) {
+
+    //         $query = $query->where('created_at', '<=', $request->validated()['created_at']);
+    //     }
+
+
+    //     if ($title = $request->validated('title')) {
+
+    //         $query  = $query->where('action', 'like', "%{$title}%");
+    //     }
+
+    //     $backUrl = config('log-supervisor.back_to_system_url');
+    //     $backLabel = config('log-supervisor.back_to_system_label');
+
+    //     return view('log-supervisor::index', [
+    //         'logs' => $query->paginate(20),
+    //         'validated' => $request->validated(),
+    //         'backUrl' => $backUrl,
+    //         'backLabel' => $backLabel,
+
+    //     ]);
+    // }
+
     public function index(SearchActivityRequest $request)
     {
-
         $query = Activity::query()->orderBy('created_at', 'desc');
-        if ($request->validated('created_at')) {
 
-            $query = $query->where('created_at', '<=', $request->validated()['created_at']);
+        if ($request->has('created_at')) {
+            // Récupérer la date sans l'heure, les minutes et les secondes
+            $date = Carbon::parse($request->input('created_at'))->startOfDay();
+            $query->whereDate('created_at', $date);
         }
 
-
-        if ($title = $request->validated('title')) {
-
-            $query  = $query->where('action', 'like', "%{$title}%");
+        if ($title = $request->input('title')) {
+            $query->where('action', 'like', "%{$title}%");
         }
 
         $backUrl = config('log-supervisor.back_to_system_url');
@@ -70,9 +97,9 @@ class LogController extends Controller
             'validated' => $request->validated(),
             'backUrl' => $backUrl,
             'backLabel' => $backLabel,
-
         ]);
     }
+
 
     /**
      */
