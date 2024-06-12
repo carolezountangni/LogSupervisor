@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ 'Log Supervisor' }} - @yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('vendor/log-supervisor/assets/css/bootstrap.min.css') }}" onerror="alert('app.css failed to load. Please refresh the page, re-publish Log Viewer assets, or fix routing for vendor assets.')">
+    <link rel="stylesheet" href="{{ asset('vendor/log-supervisor/assets/css/bootstrap.min.css') }}" onerror="alert('app.css failed to load. Please refresh the page, re-publish Log Supervisor assets, or fix routing for vendor assets.')">
         <link rel="stylesheet" href="{{ asset('vendor/log-supervisor/assets/css/custom.css') }}">
 
   </head>
@@ -39,6 +39,6 @@
         @yield('content')
     </div>
 
-    <script src="{{ asset('vendor/log-supervisor/assets/js/bootstrap.bundle.min.js') }}" onerror="alert('app.js failed to load. Please refresh the page, re-publish Log Viewer assets, or fix routing for vendor assets.')"></script>
+    <script src="{{ asset('vendor/log-supervisor/assets/js/bootstrap.bundle.min.js') }}" onerror="alert('app.js failed to load. Please refresh the page, re-publish Log Supervisor assets, or fix routing for vendor assets.')"></script>
 </body>
 </html>

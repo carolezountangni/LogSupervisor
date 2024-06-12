@@ -152,7 +152,7 @@ class LogSupervisorServiceProvider extends ServiceProvider
 
         try {
             $this->publishes([
-                self::basePath('public') => public_path('vendor/log-supervisor'),
+                self::basePath('public') => public_path('vendor'),
             ], 'public-ls');
         } catch (\Exception $e) {
             Log::error('Une erreur est survenue lors de la publication des ressources publiques : ' . $e->getMessage());
