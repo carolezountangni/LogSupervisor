@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="bg-light p-5 mb-4 rounded shadow-sm">
+<div class="bg-light p-4 rounded shadow-sm mb-4">
     <h2 class="text-center">Détails du Log</h2>
 </div>
 
