@@ -75,15 +75,11 @@ class Activity
             $attributes = $request->all();
 
             // Correction pour obtenir l'action de la route
-            if (Route::has($request->route()->getName())) {
-                $action = $request->route()->getAction();
-                $actionUses = isset($action['uses']) && is_string($action['uses']) ? $action['uses'] : 'Action inconnue';
-            } else {
-                $actionUses = 'Action inconnue';
-            }
+            $route = $request->route();
+            $actionUses = $route ? $route->getAction()['uses'] ?? 'Action inconnue' : 'Action inconnue';
 
             // Correction pour obtenir le nom de la route
-            $routeName = $request->route()->getName() ?? null;
+            $routeName = $route ? $route->getName() ?? null : null;
 
             return [
                 'action' => $actionUses,
