@@ -5,6 +5,7 @@ namespace carolezountangni\LogSupervisor\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route; // Ajout de l'importation de la classe Route
 use carolezountangni\LogSupervisor\Repositories\ActivityRepository;
 
 class Activity
@@ -17,7 +18,7 @@ class Activity
     }
 
     /**
-     * Gérer une requête entrante.
+     * Intercepte une demande entrante.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -40,7 +41,7 @@ class Activity
     }
 
     /**
-     * Vérifiez si toutes les valeurs dans le tableau donné ne sont pas vides.
+     * Vérifie si toutes les valeurs dans le tableau donné ne sont pas vides.
      *
      * @param  array  $array
      * @return bool
@@ -57,40 +58,49 @@ class Activity
     }
 
     /**
-     * Créer un tableau de journal de demande à partir de la demande donnée.
+     * Crée un tableau de journalisation à partir de la demande donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function makeRequest(Request $request)
     {
-        $user = Auth::user();
-        $role = $user ? $user->role : null;
-        $id = $user ? $user->id : null;
+        // Vérifie si $request est une instance de Request
+        if ($request instanceof Request) {
+            $user = Auth::user();
+            $role = $user ? $user->role : null;
+            $id = $user ? $user->id : null;
 
-        $ipAddress = $request->ip();
-        $attributes = $request->all();
+            $ipAddress = $request->ip();
+            $attributes = $request->all();
 
-        // Correction pour obtenir l'action de la route
-        $action = $request->route()->getAction();
-        $actionUses = isset($action['uses']) && is_string($action['uses']) ? $action['uses'] : 'Action inconnue';
+            // Correction pour obtenir l'action de la route
+            if (Route::has($request->route()->getName())) {
+                $action = $request->route()->getAction();
+                $actionUses = isset($action['uses']) && is_string($action['uses']) ? $action['uses'] : 'Action inconnue';
+            } else {
+                $actionUses = 'Action inconnue';
+            }
 
-        // Correction pour obtenir le nom de la route
-        $routeName = $request->route()->getName() ?? null;
+            // Correction pour obtenir le nom de la route
+            $routeName = $request->route()->getName() ?? null;
 
-        return [
-            'action' => $actionUses,
-            'description' => null,
-            'role' => $role,
-            'group' => null,
-            'user_agent' => $request->header('User-Agent'),
-            'route' => $routeName,
-            'referrer' => $request->header('referer'),
-            'method' => $request->method(),
-            'locale' => $request->header('Accept-Language'),
-            'user_id' => $id,
-            'ip_address' => $ipAddress,
-            'attributes' => $attributes
-        ];
+            return [
+                'action' => $actionUses,
+                'description' => null,
+                'role' => $role,
+                'group' => null,
+                'user_agent' => $request->header('User-Agent'),
+                'route' => $routeName,
+                'referrer' => $request->header('referer'),
+                'method' => $request->method(),
+                'locale' => $request->header('Accept-Language'),
+                'user_id' => $id,
+                'ip_address' => $ipAddress,
+                'attributes' => $attributes
+            ];
+        } else {
+            return [];
+        }
     }
 }
