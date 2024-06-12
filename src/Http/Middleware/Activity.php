@@ -17,7 +17,7 @@ class Activity
     }
 
     /**
-     * Handle an incoming request.
+     * Gérer une requête entrante.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -26,27 +26,47 @@ class Activity
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        $tostore = $this->makeRequest($request);
-        $activity = $this->activityRepo->makeStore($tostore);
-        if (!$activity) {
-            return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
+        $toStore = $this->makeRequest($request);
+
+        // Vérifier si toutes les valeurs ne sont pas vides
+        if ($this->hasNoEmptyValues($toStore)) {
+            $activity = $this->activityRepo->makeStore($toStore);
+            if (!$activity) {
+                return back()->with('error', 'L\'action a échoué, veuillez réessayer !');
+            }
         }
+
         return $response;
     }
 
     /**
-     * Create a request log array from the given request.
+     * Vérifiez si toutes les valeurs dans le tableau donné ne sont pas vides.
+     *
+     * @param  array  $array
+     * @return bool
+     */
+    protected function hasNoEmptyValues($array)
+    {
+        foreach ($array as $value) {
+            // Vérifier si la valeur est vide
+            if ($value === '') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Créer un tableau de journal de demande à partir de la demande donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function makeRequest(Request $request)
     {
-
         $user = Auth::user();
         $role = $user ? $user->role : null;
         $id = $user ? $user->id : null;
-
 
         $ipAddress = $request->ip();
         $attributes = $request->all();
@@ -54,7 +74,6 @@ class Activity
         // Correction pour obtenir l'action de la route
         $action = $request->route()->getAction();
         $actionUses = isset($action['uses']) && is_string($action['uses']) ? $action['uses'] : 'Action inconnue';
-
 
         // Correction pour obtenir le nom de la route
         $routeName = $request->route()->getName() ?? null;
