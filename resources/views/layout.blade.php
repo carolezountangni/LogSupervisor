@@ -39,6 +39,24 @@
         @yield('content')
     </div>
 
+    <footer class="bg-light text-center text-dark py-3">
+      <div class="container">
+          <p class="mb-0">&copy; {{ date('Y') }} Nom de votre entreprise. Tous droits réservés.</p>
+          <p class="mb-0">
+              <a href="#" class="text-dark">Accueil</a> | 
+              <a href="#" class="text-dark">À propos</a> | 
+              <a href="#" class="text-dark">Contact</a>
+          </p>
+          <div class="mt-2">
+              <a href="#" class="text-dark mr-2"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-dark mr-2"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-dark mr-2"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+          </div>
+      </div>
+    </footer>
+
+
     <script src="{{ asset('vendor/log-supervisor/assets/js/bootstrap.bundle.min.js') }}" onerror="alert('app.js failed to load. Please refresh the page, re-publish Log Supervisor assets, or fix routing for vendor assets.')"></script>
 </body>
 </html>

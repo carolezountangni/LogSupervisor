@@ -4,25 +4,27 @@
 
 @section('content')
 
-
-
-<div class="bg-light p-5 mb-1 text-center">
-    <form action="" method="get" class="container d-flex gap-2">
-
-        <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? '' }}">
-            <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? '' }}">
-
-
-        <button class="btn btn-primary btn-sm flex-grow-0">
-
-                <i class="fa fa-search">Rechercher</i>
-            
-        </button> 
-
-
-    </form>
-
- </div>
+<div class="custom-container">
+    <div class="custom-row">
+        <div class="custom-col-lg-6 mx-auto">
+            <div class="bg-light p-4 mb-4 rounded shadow-sm custom-menu">
+                <form action="" method="get">
+                    <div class="custom-row g-2">
+                        <div class="custom-col-sm">
+                            <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? ''}}">
+                        </div>
+                        <div class="custom-col-sm">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
+                        </div>
+                        <div class="custom-col-sm-auto">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="custom-container">
     <div class="custom-row">
