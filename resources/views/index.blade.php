@@ -4,26 +4,24 @@
 
 @section('content')
 
-<div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
-                <div class="bg-light p-4 mb-4 rounded shadow-sm custom-menu">
-                    <form action="" method="get">
-                        <div class="form-row">
-                            <div class="form-group col-sm-12 col-md-4 mb-2">
-                                <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? '' }}">
-                            </div>
-                            <div class="form-group col-sm-12 col-md-4 mb-2">
-                                <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? '' }}">
-                            </div>
-                            <div class="form-group col-sm-12 col-md-4 mb-2 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i> Rechercher</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
+
+<div class="bg-light p-5 mb-1 text-center">
+    <form action="" method="get" class="container d-flex gap-2">
+
+        <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? '' }}">
+            <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? '' }}">
+
+
+        <button class="btn btn-primary btn-sm flex-grow-0">
+
+                <i class="fa fa-search">Rechercher</i>
+            
+        </button> 
+
+
+    </form>
+
  </div>
 
 <div class="custom-container">
