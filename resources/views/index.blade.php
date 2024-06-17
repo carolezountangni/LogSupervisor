@@ -4,27 +4,27 @@
 
 @section('content')
 
-<div class="custom-container">
-    <div class="custom-row">
-        <div class="custom-col-lg-6 mx-auto">
-            <div class="bg-light p-4 mb-4 rounded shadow-sm custom-menu">
-                <form action="" method="get">
-                    <div class="custom-row g-2">
-                        <div class="custom-col-sm">
-                            <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? ''}}">
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+                <div class="bg-light p-4 mb-4 rounded shadow-sm custom-menu">
+                    <form action="" method="get">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12 col-md-4 mb-2">
+                                <input type="date" name="created_at" id="created_at" class="form-control" placeholder="Date" value="{{ $input['created_at'] ?? '' }}">
+                            </div>
+                            <div class="form-group col-sm-12 col-md-4 mb-2">
+                                <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? '' }}">
+                            </div>
+                            <div class="form-group col-sm-12 col-md-4 mb-2 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i> Rechercher</button>
+                            </div>
                         </div>
-                        <div class="custom-col-sm">
-                            <input type="text" name="title" id="title" class="form-control" placeholder="Mot clé" value="{{ $input['title'] ?? ''}}">
-                        </div>
-                        <div class="custom-col-sm-auto">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Rechercher</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+ </div>
 
 <div class="custom-container">
     <div class="custom-row">
