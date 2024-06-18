@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('lg.logs.index')}}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{{route('lg.logs.index')}}">Accueil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href={{$backUrl}}>{{ $backLabel}}</a>
@@ -41,9 +41,9 @@
 
     <footer class="bg-light text-center text-dark py-3">
       <div class="container">
-          <p class="mb-0">&copy; {{ date('Y') }} Nom de votre entreprise. Tous droits réservés.</p>
+          <p class="mb-0">&copy; {{ date('Y') }} Log Supervisor. Tous droits réservés.</p>
           <p class="mb-0">
-              <a href="#" class="text-dark">Accueil</a> | 
+              <a href="{{route('lg.logs.index')}}" class="text-dark">Accueil</a> | 
               <a href="#" class="text-dark">À propos</a> | 
               <a href="#" class="text-dark">Contact</a>
           </p>
