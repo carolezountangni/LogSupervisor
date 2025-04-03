@@ -8,7 +8,8 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 
-Save all user logs on a Laravel Application
+Database logging of user logs in a Laravel application
+
 ## Structure
 
 If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.

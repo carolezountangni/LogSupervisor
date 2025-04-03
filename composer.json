@@ -1,11 +1,14 @@
 {
     "name": "log-supervisor/log-supervisor",
     "type": "library",
-    "description": "Save all user logs on a Laravel Application",
+    "description": "Database logging of user logs in a Laravel application",
     "version": "0.0.9",
     "keywords": [
         "carolezountangni",
-        "LogSupervisor"
+        "LogSupervisor",
+        "laravel",
+        "log",
+        "logs"
     ],
     "homepage": "https://github.com/carolezountangni/LogSupervisor",
     "license": "MIT",
